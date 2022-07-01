@@ -24,6 +24,11 @@ func NewAccount(accountID uint64, address, key string) Account {
 	}
 }
 
+//HexToAddress
+func HexToAddress(address string) common.Address {
+	return common.HexToAddress(address)
+}
+
 //GetAccountByID
 func GetAccountByID(accountID uint64) Account {
 	a := Account{

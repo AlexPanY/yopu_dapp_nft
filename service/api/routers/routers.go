@@ -1,7 +1,7 @@
 package routers
 
 import (
-	v1 "ebay_dapp_golang/api/v1"
+	v1 "ypt_server/api/v1"
 
 	"github.com/gin-gonic/gin"
 )

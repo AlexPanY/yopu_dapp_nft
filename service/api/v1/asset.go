@@ -1,16 +1,18 @@
 package v1
 
 import (
-	"ebay_dapp_golang/api"
-	"ebay_dapp_golang/errno"
-	"ebay_dapp_golang/token"
+	"ypt_server/api"
+	"ypt_server/errno"
+	"ypt_server/pkg/ether"
+	"ypt_server/token"
 
 	"github.com/gin-gonic/gin"
 )
 
 //CreateYPTTokenRequest
 type CreateYPTTokenRequest struct {
-	Account     string                          `json:"Account"`
+	Address     string                          `json:"address"`
+	Privatekey  string                          `json:"privatekey"`
 	Name        string                          `json:"name"`
 	Description string                          `json:"description"`
 	Image       string                          `json:"image"`
@@ -27,6 +29,7 @@ func CreateYPTToken(c *gin.Context) {
 	}
 
 	t := token.ERC721_YopuNFT{
+		Account:     ether.NewAccount(1, req.Address, req.Privatekey),
 		Name:        req.Name,
 		Description: req.Description,
 		Image:       req.Image,
@@ -38,5 +41,21 @@ func CreateYPTToken(c *gin.Context) {
 		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)
 		return
 	}
+
+	api.SuccJSONWithData(c, 1)
+}
+
+type DescribeAssetListRequest struct {
+	Address string `json:"address"`
+}
+
+//DescribeAssetList
+func DescribeAssetList(c *gin.Context) {
+	var req DescribeAssetListRequest
+	if err := c.ShouldBindJSON(&req); err != nil {
+		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)
+		return
+	}
+
 	api.SuccJSONWithData(c, 1)
 }

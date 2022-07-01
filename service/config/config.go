@@ -5,9 +5,9 @@ import (
 	"io/ioutil"
 	"os"
 
-	"ebay_dapp_golang/pkg/logger"
-	"ebay_dapp_golang/pkg/mysql"
-	"ebay_dapp_golang/pkg/redis"
+	"ypt_server/pkg/logger"
+	"ypt_server/pkg/mysql"
+	"ypt_server/pkg/redis"
 
 	"gopkg.in/yaml.v2"
 )

@@ -11,8 +11,8 @@ import (
 	"syscall"
 	"time"
 
-	"ebay_dapp_golang/api/routers"
-	"ebay_dapp_golang/config"
+	"ypt_server/api/routers"
+	"ypt_server/config"
 
 	"github.com/gin-gonic/gin"
 )

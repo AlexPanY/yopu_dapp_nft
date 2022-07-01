@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"ebay_dapp_golang/errno"
-	log "ebay_dapp_golang/pkg/logger"
+	"ypt_server/errno"
+	log "ypt_server/pkg/logger"
 
 	"github.com/gin-gonic/gin"
 )

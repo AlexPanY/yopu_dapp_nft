@@ -3,7 +3,15 @@ package token
 import (
 	"fmt"
 
-	"ebay_dapp_golang/pkg/ifps"
+	"ypt_server/contracts"
+	"ypt_server/pkg/ether"
+	"ypt_server/pkg/ifps"
+
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
+)
+
+var (
+	defaultContractAddress = "0x546A1878AA552B5dC832Cf32cAeCBA6a87ffD975"
 )
 
 //ERC721_YopuNFTProperty
@@ -14,6 +22,7 @@ type ERC721_YopuNFTProperty struct {
 
 //ERC721_YopuNFT
 type ERC721_YopuNFT struct {
+	Account     ether.Account             `json:"-"`
 	Name        string                    `json:"name"`
 	Description string                    `json:"description"`
 	Image       string                    `json:"image"`
@@ -23,11 +32,32 @@ type ERC721_YopuNFT struct {
 
 //Mint Minting a single token based on ERC721.
 func (t *ERC721_YopuNFT) Mint() error {
-	uri, err := t.NewMetadataURI()
+	cid, err := t.NewMetadataURI()
 	if err != nil {
 		return err
 	}
-	fmt.Println(uri)
+	conn, err := ether.NewEtherClientConn()
+	if err != nil {
+		return err
+	}
+
+	ypt, err := contracts.NewYopuNFT(ether.HexToAddress(defaultContractAddress), conn)
+	if err != nil {
+		return err
+	}
+
+	uri := fmt.Sprintf("https://ipfs.io/%s", cid)
+	transaction, err := ypt.SafeMint(t.Account.EthAddress, uri)
+	if err != nil {
+		return err
+	}
+
+	transactOpts, err := bind.NewTransactorWithChainID(key, "test", chainID)
+	if err != nil {
+		return err
+	}
+
+	fmt.Println(transaction)
 	return nil
 }
 

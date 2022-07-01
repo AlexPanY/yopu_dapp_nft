@@ -1,8 +1,8 @@
 package v1
 
 import (
-	"ebay_dapp_golang/api"
-	"ebay_dapp_golang/errno"
+	"ypt_server/api"
+	"ypt_server/errno"
 
 	"github.com/gin-gonic/gin"
 )

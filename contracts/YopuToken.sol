@@ -1,20 +1,20 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import "./lib/openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "./lib/openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import "./lib/openzeppelin/contracts/security/Pausable.sol";
-import "./lib/openzeppelin/contracts/access/Ownable.sol";
-import "./lib/openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
-import "./lib/openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/security/Pausable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
 
 /// @custom:security-contact psj474@gmail.com
-contract YopuToken is ERC721, ERC721URIStorage, Pausable, Ownable, ERC721Burnable {
+contract YopuNFT is ERC721, ERC721URIStorage, Pausable, Ownable, ERC721Burnable {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
 
-    constructor() ERC721("YopuToken", "YPT") {}
+    constructor() ERC721("YopuNFT", "YPT") {}
 
     function pause() public onlyOwner {
         _pause();
