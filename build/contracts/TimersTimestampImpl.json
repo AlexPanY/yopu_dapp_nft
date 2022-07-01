@@ -1,0 +1,1578 @@
+{
+  "contractName": "TimersTimestampImpl",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "getDeadline",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "timestamp",
+          "type": "uint64"
+        }
+      ],
+      "name": "setDeadline",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "reset",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "isUnset",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "isStarted",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "isPending",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "isExpired",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.14+commit.80d49f37\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"getDeadline\",\"outputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"isExpired\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"isPending\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"isStarted\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"isUnset\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"reset\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"timestamp\",\"type\":\"uint64\"}],\"name\":\"setDeadline\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/lib/openzeppelin/contracts/mocks/TimersTimestampImpl.sol\":\"TimersTimestampImpl\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[]},\"sources\":{\"project:/contracts/lib/openzeppelin/contracts/mocks/TimersTimestampImpl.sol\":{\"keccak256\":\"0xc6f221df7f94dff5ee5b5e79adf32b705a05f732525d38edb881dd7cf213efd9\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://44ed35d1af58c6ec08d9c2f660abe3e4cb013faa23aa1c8dbbfa9e6a7127a162\",\"dweb:/ipfs/QmThC9H2d4tmsJw4rRNaKeWjw3G6MSiR8BzXmKfyhWVByU\"]},\"project:/contracts/lib/openzeppelin/contracts/utils/Timers.sol\":{\"keccak256\":\"0x40a3b110a465c2c5776c330090cb53b1e2b643e4715dc76a04953e0478f2cee3\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://bfa12ff65ef7c3f93d4e843106c09fe2bed47d4945c77a68d8aa0774b20869f1\",\"dweb:/ipfs/QmSTGQG9BuCeSyvdpSVXwe3f3sbaMFdugCFmaouuuouEwq\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610228806100206000396000f3fe608060405234801561001057600080fd5b506004361061006d5760003560e01c80632260fe3a146100725780632f13b60c146100a4578063544736e6146100ac5780635f8d96de146100ce5780639c30ad7e146100f4578063aebc048314610116578063d826f88f14610146575b600080fd5b60408051602081019091526000546001600160401b031690819052155b60405190151581526020015b60405180910390f35b61008f610153565b60408051602081019091526000546001600160401b031690819052151561008f565b60408051602080820183526000546001600160401b03169182905291519081520161009b565b60408051602081019091526000546001600160401b031690819052421061008f565b6101446101243660046101c2565b600080546001600160401b0383166001600160401b031990911617905550565b005b610144610177565b905090565b6040805160208101909152600080546001600160401b031682529061014e9061018e565b61018c600080546001600160401b0319169055565b565b60006101a382516001600160401b0316151590565b80156101bc57504282600001516001600160401b031611155b92915050565b6000602082840312156101d457600080fd5b81356001600160401b03811681146101eb57600080fd5b939250505056fea26469706673582212202bf0a910bbaece79affbb24f86cd89785928b9dbc00871339fb862aba695c11764736f6c634300080e0033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061006d5760003560e01c80632260fe3a146100725780632f13b60c146100a4578063544736e6146100ac5780635f8d96de146100ce5780639c30ad7e146100f4578063aebc048314610116578063d826f88f14610146575b600080fd5b60408051602081019091526000546001600160401b031690819052155b60405190151581526020015b60405180910390f35b61008f610153565b60408051602081019091526000546001600160401b031690819052151561008f565b60408051602080820183526000546001600160401b03169182905291519081520161009b565b60408051602081019091526000546001600160401b031690819052421061008f565b6101446101243660046101c2565b600080546001600160401b0383166001600160401b031990911617905550565b005b610144610177565b905090565b6040805160208101909152600080546001600160401b031682529061014e9061018e565b61018c600080546001600160401b0319169055565b565b60006101a382516001600160401b0316151590565b80156101bc57504282600001516001600160401b031611155b92915050565b6000602082840312156101d457600080fd5b81356001600160401b03811681146101eb57600080fd5b939250505056fea26469706673582212202bf0a910bbaece79affbb24f86cd89785928b9dbc00871339fb862aba695c11764736f6c634300080e0033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [
+    {
+      "ast": {
+        "nodeType": "YulBlock",
+        "src": "0:697:273",
+        "statements": [
+          {
+            "nodeType": "YulBlock",
+            "src": "6:3:273",
+            "statements": []
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "109:92:273",
+              "statements": [
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "119:26:273",
+                  "value": {
+                    "arguments": [
+                      {
+                        "name": "headStart",
+                        "nodeType": "YulIdentifier",
+                        "src": "131:9:273"
+                      },
+                      {
+                        "kind": "number",
+                        "nodeType": "YulLiteral",
+                        "src": "142:2:273",
+                        "type": "",
+                        "value": "32"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "add",
+                      "nodeType": "YulIdentifier",
+                      "src": "127:3:273"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "127:18:273"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "tail",
+                      "nodeType": "YulIdentifier",
+                      "src": "119:4:273"
+                    }
+                  ]
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "name": "headStart",
+                        "nodeType": "YulIdentifier",
+                        "src": "161:9:273"
+                      },
+                      {
+                        "arguments": [
+                          {
+                            "arguments": [
+                              {
+                                "name": "value0",
+                                "nodeType": "YulIdentifier",
+                                "src": "186:6:273"
+                              }
+                            ],
+                            "functionName": {
+                              "name": "iszero",
+                              "nodeType": "YulIdentifier",
+                              "src": "179:6:273"
+                            },
+                            "nodeType": "YulFunctionCall",
+                            "src": "179:14:273"
+                          }
+                        ],
+                        "functionName": {
+                          "name": "iszero",
+                          "nodeType": "YulIdentifier",
+                          "src": "172:6:273"
+                        },
+                        "nodeType": "YulFunctionCall",
+                        "src": "172:22:273"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "mstore",
+                      "nodeType": "YulIdentifier",
+                      "src": "154:6:273"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "154:41:273"
+                  },
+                  "nodeType": "YulExpressionStatement",
+                  "src": "154:41:273"
+                }
+              ]
+            },
+            "name": "abi_encode_tuple_t_bool__to_t_bool__fromStack_reversed",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "headStart",
+                "nodeType": "YulTypedName",
+                "src": "78:9:273",
+                "type": ""
+              },
+              {
+                "name": "value0",
+                "nodeType": "YulTypedName",
+                "src": "89:6:273",
+                "type": ""
+              }
+            ],
+            "returnVariables": [
+              {
+                "name": "tail",
+                "nodeType": "YulTypedName",
+                "src": "100:4:273",
+                "type": ""
+              }
+            ],
+            "src": "14:187:273"
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "305:101:273",
+              "statements": [
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "315:26:273",
+                  "value": {
+                    "arguments": [
+                      {
+                        "name": "headStart",
+                        "nodeType": "YulIdentifier",
+                        "src": "327:9:273"
+                      },
+                      {
+                        "kind": "number",
+                        "nodeType": "YulLiteral",
+                        "src": "338:2:273",
+                        "type": "",
+                        "value": "32"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "add",
+                      "nodeType": "YulIdentifier",
+                      "src": "323:3:273"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "323:18:273"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "tail",
+                      "nodeType": "YulIdentifier",
+                      "src": "315:4:273"
+                    }
+                  ]
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "name": "headStart",
+                        "nodeType": "YulIdentifier",
+                        "src": "357:9:273"
+                      },
+                      {
+                        "arguments": [
+                          {
+                            "name": "value0",
+                            "nodeType": "YulIdentifier",
+                            "src": "372:6:273"
+                          },
+                          {
+                            "arguments": [
+                              {
+                                "arguments": [
+                                  {
+                                    "kind": "number",
+                                    "nodeType": "YulLiteral",
+                                    "src": "388:2:273",
+                                    "type": "",
+                                    "value": "64"
+                                  },
+                                  {
+                                    "kind": "number",
+                                    "nodeType": "YulLiteral",
+                                    "src": "392:1:273",
+                                    "type": "",
+                                    "value": "1"
+                                  }
+                                ],
+                                "functionName": {
+                                  "name": "shl",
+                                  "nodeType": "YulIdentifier",
+                                  "src": "384:3:273"
+                                },
+                                "nodeType": "YulFunctionCall",
+                                "src": "384:10:273"
+                              },
+                              {
+                                "kind": "number",
+                                "nodeType": "YulLiteral",
+                                "src": "396:1:273",
+                                "type": "",
+                                "value": "1"
+                              }
+                            ],
+                            "functionName": {
+                              "name": "sub",
+                              "nodeType": "YulIdentifier",
+                              "src": "380:3:273"
+                            },
+                            "nodeType": "YulFunctionCall",
+                            "src": "380:18:273"
+                          }
+                        ],
+                        "functionName": {
+                          "name": "and",
+                          "nodeType": "YulIdentifier",
+                          "src": "368:3:273"
+                        },
+                        "nodeType": "YulFunctionCall",
+                        "src": "368:31:273"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "mstore",
+                      "nodeType": "YulIdentifier",
+                      "src": "350:6:273"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "350:50:273"
+                  },
+                  "nodeType": "YulExpressionStatement",
+                  "src": "350:50:273"
+                }
+              ]
+            },
+            "name": "abi_encode_tuple_t_uint64__to_t_uint64__fromStack_reversed",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "headStart",
+                "nodeType": "YulTypedName",
+                "src": "274:9:273",
+                "type": ""
+              },
+              {
+                "name": "value0",
+                "nodeType": "YulTypedName",
+                "src": "285:6:273",
+                "type": ""
+              }
+            ],
+            "returnVariables": [
+              {
+                "name": "tail",
+                "nodeType": "YulTypedName",
+                "src": "296:4:273",
+                "type": ""
+              }
+            ],
+            "src": "206:200:273"
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "480:215:273",
+              "statements": [
+                {
+                  "body": {
+                    "nodeType": "YulBlock",
+                    "src": "526:16:273",
+                    "statements": [
+                      {
+                        "expression": {
+                          "arguments": [
+                            {
+                              "kind": "number",
+                              "nodeType": "YulLiteral",
+                              "src": "535:1:273",
+                              "type": "",
+                              "value": "0"
+                            },
+                            {
+                              "kind": "number",
+                              "nodeType": "YulLiteral",
+                              "src": "538:1:273",
+                              "type": "",
+                              "value": "0"
+                            }
+                          ],
+                          "functionName": {
+                            "name": "revert",
+                            "nodeType": "YulIdentifier",
+                            "src": "528:6:273"
+                          },
+                          "nodeType": "YulFunctionCall",
+                          "src": "528:12:273"
+                        },
+                        "nodeType": "YulExpressionStatement",
+                        "src": "528:12:273"
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "name": "dataEnd",
+                            "nodeType": "YulIdentifier",
+                            "src": "501:7:273"
+                          },
+                          {
+                            "name": "headStart",
+                            "nodeType": "YulIdentifier",
+                            "src": "510:9:273"
+                          }
+                        ],
+                        "functionName": {
+                          "name": "sub",
+                          "nodeType": "YulIdentifier",
+                          "src": "497:3:273"
+                        },
+                        "nodeType": "YulFunctionCall",
+                        "src": "497:23:273"
+                      },
+                      {
+                        "kind": "number",
+                        "nodeType": "YulLiteral",
+                        "src": "522:2:273",
+                        "type": "",
+                        "value": "32"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "slt",
+                      "nodeType": "YulIdentifier",
+                      "src": "493:3:273"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "493:32:273"
+                  },
+                  "nodeType": "YulIf",
+                  "src": "490:52:273"
+                },
+                {
+                  "nodeType": "YulVariableDeclaration",
+                  "src": "551:36:273",
+                  "value": {
+                    "arguments": [
+                      {
+                        "name": "headStart",
+                        "nodeType": "YulIdentifier",
+                        "src": "577:9:273"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "calldataload",
+                      "nodeType": "YulIdentifier",
+                      "src": "564:12:273"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "564:23:273"
+                  },
+                  "variables": [
+                    {
+                      "name": "value",
+                      "nodeType": "YulTypedName",
+                      "src": "555:5:273",
+                      "type": ""
+                    }
+                  ]
+                },
+                {
+                  "body": {
+                    "nodeType": "YulBlock",
+                    "src": "649:16:273",
+                    "statements": [
+                      {
+                        "expression": {
+                          "arguments": [
+                            {
+                              "kind": "number",
+                              "nodeType": "YulLiteral",
+                              "src": "658:1:273",
+                              "type": "",
+                              "value": "0"
+                            },
+                            {
+                              "kind": "number",
+                              "nodeType": "YulLiteral",
+                              "src": "661:1:273",
+                              "type": "",
+                              "value": "0"
+                            }
+                          ],
+                          "functionName": {
+                            "name": "revert",
+                            "nodeType": "YulIdentifier",
+                            "src": "651:6:273"
+                          },
+                          "nodeType": "YulFunctionCall",
+                          "src": "651:12:273"
+                        },
+                        "nodeType": "YulExpressionStatement",
+                        "src": "651:12:273"
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "name": "value",
+                            "nodeType": "YulIdentifier",
+                            "src": "609:5:273"
+                          },
+                          {
+                            "arguments": [
+                              {
+                                "name": "value",
+                                "nodeType": "YulIdentifier",
+                                "src": "620:5:273"
+                              },
+                              {
+                                "arguments": [
+                                  {
+                                    "arguments": [
+                                      {
+                                        "kind": "number",
+                                        "nodeType": "YulLiteral",
+                                        "src": "635:2:273",
+                                        "type": "",
+                                        "value": "64"
+                                      },
+                                      {
+                                        "kind": "number",
+                                        "nodeType": "YulLiteral",
+                                        "src": "639:1:273",
+                                        "type": "",
+                                        "value": "1"
+                                      }
+                                    ],
+                                    "functionName": {
+                                      "name": "shl",
+                                      "nodeType": "YulIdentifier",
+                                      "src": "631:3:273"
+                                    },
+                                    "nodeType": "YulFunctionCall",
+                                    "src": "631:10:273"
+                                  },
+                                  {
+                                    "kind": "number",
+                                    "nodeType": "YulLiteral",
+                                    "src": "643:1:273",
+                                    "type": "",
+                                    "value": "1"
+                                  }
+                                ],
+                                "functionName": {
+                                  "name": "sub",
+                                  "nodeType": "YulIdentifier",
+                                  "src": "627:3:273"
+                                },
+                                "nodeType": "YulFunctionCall",
+                                "src": "627:18:273"
+                              }
+                            ],
+                            "functionName": {
+                              "name": "and",
+                              "nodeType": "YulIdentifier",
+                              "src": "616:3:273"
+                            },
+                            "nodeType": "YulFunctionCall",
+                            "src": "616:30:273"
+                          }
+                        ],
+                        "functionName": {
+                          "name": "eq",
+                          "nodeType": "YulIdentifier",
+                          "src": "606:2:273"
+                        },
+                        "nodeType": "YulFunctionCall",
+                        "src": "606:41:273"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "iszero",
+                      "nodeType": "YulIdentifier",
+                      "src": "599:6:273"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "599:49:273"
+                  },
+                  "nodeType": "YulIf",
+                  "src": "596:69:273"
+                },
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "674:15:273",
+                  "value": {
+                    "name": "value",
+                    "nodeType": "YulIdentifier",
+                    "src": "684:5:273"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "value0",
+                      "nodeType": "YulIdentifier",
+                      "src": "674:6:273"
+                    }
+                  ]
+                }
+              ]
+            },
+            "name": "abi_decode_tuple_t_uint64",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "headStart",
+                "nodeType": "YulTypedName",
+                "src": "446:9:273",
+                "type": ""
+              },
+              {
+                "name": "dataEnd",
+                "nodeType": "YulTypedName",
+                "src": "457:7:273",
+                "type": ""
+              }
+            ],
+            "returnVariables": [
+              {
+                "name": "value0",
+                "nodeType": "YulTypedName",
+                "src": "469:6:273",
+                "type": ""
+              }
+            ],
+            "src": "411:284:273"
+          }
+        ]
+      },
+      "contents": "{\n    { }\n    function abi_encode_tuple_t_bool__to_t_bool__fromStack_reversed(headStart, value0) -> tail\n    {\n        tail := add(headStart, 32)\n        mstore(headStart, iszero(iszero(value0)))\n    }\n    function abi_encode_tuple_t_uint64__to_t_uint64__fromStack_reversed(headStart, value0) -> tail\n    {\n        tail := add(headStart, 32)\n        mstore(headStart, and(value0, sub(shl(64, 1), 1)))\n    }\n    function abi_decode_tuple_t_uint64(headStart, dataEnd) -> value0\n    {\n        if slt(sub(dataEnd, headStart), 32) { revert(0, 0) }\n        let value := calldataload(headStart)\n        if iszero(eq(value, and(value, sub(shl(64, 1), 1)))) { revert(0, 0) }\n        value0 := value\n    }\n}",
+      "id": 273,
+      "language": "Yul",
+      "name": "#utility.yul"
+    }
+  ],
+  "sourceMap": "95:782:157:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "95:782:157:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;486:88;550:14;;;;;;;;;-1:-1:-1;550:14:157;-1:-1:-1;;;;;550:14:157;;;;;693:20:240;486:88:157;;;179:14:273;;172:22;154:41;;142:2;127:18;486:88:157;;;;;;;;782:92;;;:::i;582:::-;648:16;;;;;;;;;-1:-1:-1;648:16:157;-1:-1:-1;;;;;648:16:157;;;;;819:19:240;;582:92:157;486:88;213:98;283:18;;;;;;;;;-1:-1:-1;283:18:157;-1:-1:-1;;;;;283:18:157;;;;;213:98;;350:50:273;;;323:18;213:98:157;206:200:273;682:92:157;748:16;;;;;;;;;-1:-1:-1;748:16:157;-1:-1:-1;;;;;748:16:157;;;;;962:15:240;-1:-1:-1;682:92:157;486:88;319:94;;;;;;:::i;:::-;376:6;467:27:240;;-1:-1:-1;;;;;467:27:240;;-1:-1:-1;;;;;;467:27:240;;;;;;319:94:157;;;;421:57;;;:::i;550:16::-;543:23;;486:88;:::o;782:92::-;848:16;;;;;;;;;824:4;848:16;;-1:-1:-1;;;;;848:16:157;;;824:4;848:18;;:16;:18::i;421:57::-;456:14;:6;570:19:240;;-1:-1:-1;;;;;;570:19:240;;;510:87;456:14:157;421:57::o;993:152:240:-;1059:4;1083:16;1093:5;819:15;-1:-1:-1;;;;;819:19:240;;;;729:117;1083:16;:54;;;;;1122:15;1103:5;:15;;;-1:-1:-1;;;;;1103:34:240;;;1083:54;1076:61;993:152;-1:-1:-1;;993:152:240:o;411:284:273:-;469:6;522:2;510:9;501:7;497:23;493:32;490:52;;;538:1;535;528:12;490:52;564:23;;-1:-1:-1;;;;;616:30:273;;606:41;;596:69;;661:1;658;651:12;596:69;684:5;411:284;-1:-1:-1;;;411:284:273:o",
+  "source": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.0;\r\n\r\nimport \"../utils/Timers.sol\";\r\n\r\ncontract TimersTimestampImpl {\r\n    using Timers for Timers.Timestamp;\r\n\r\n    Timers.Timestamp private _timer;\r\n\r\n    function getDeadline() public view returns (uint64) {\r\n        return _timer.getDeadline();\r\n    }\r\n\r\n    function setDeadline(uint64 timestamp) public {\r\n        _timer.setDeadline(timestamp);\r\n    }\r\n\r\n    function reset() public {\r\n        _timer.reset();\r\n    }\r\n\r\n    function isUnset() public view returns (bool) {\r\n        return _timer.isUnset();\r\n    }\r\n\r\n    function isStarted() public view returns (bool) {\r\n        return _timer.isStarted();\r\n    }\r\n\r\n    function isPending() public view returns (bool) {\r\n        return _timer.isPending();\r\n    }\r\n\r\n    function isExpired() public view returns (bool) {\r\n        return _timer.isExpired();\r\n    }\r\n}\r\n",
+  "sourcePath": "D:\\work\\www\\yopu_dapp_nft\\contracts\\lib\\openzeppelin\\contracts\\mocks\\TimersTimestampImpl.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/lib/openzeppelin/contracts/mocks/TimersTimestampImpl.sol",
+    "exportedSymbols": {
+      "Timers": [
+        32054
+      ],
+      "TimersTimestampImpl": [
+        18465
+      ]
+    },
+    "id": 18466,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 18385,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "35:23:157"
+      },
+      {
+        "absolutePath": "project:/contracts/lib/openzeppelin/contracts/utils/Timers.sol",
+        "file": "../utils/Timers.sol",
+        "id": 18386,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 18466,
+        "sourceUnit": 32055,
+        "src": "62:29:157",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "TimersTimestampImpl",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 18465,
+        "linearizedBaseContracts": [
+          18465
+        ],
+        "name": "TimersTimestampImpl",
+        "nameLocation": "104:19:157",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "global": false,
+            "id": 18390,
+            "libraryName": {
+              "id": 18387,
+              "name": "Timers",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 32054,
+              "src": "137:6:157"
+            },
+            "nodeType": "UsingForDirective",
+            "src": "131:34:157",
+            "typeName": {
+              "id": 18389,
+              "nodeType": "UserDefinedTypeName",
+              "pathNode": {
+                "id": 18388,
+                "name": "Timers.Timestamp",
+                "nodeType": "IdentifierPath",
+                "referencedDeclaration": 31846,
+                "src": "148:16:157"
+              },
+              "referencedDeclaration": 31846,
+              "src": "148:16:157",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_Timestamp_$31846_storage_ptr",
+                "typeString": "struct Timers.Timestamp"
+              }
+            }
+          },
+          {
+            "constant": false,
+            "id": 18393,
+            "mutability": "mutable",
+            "name": "_timer",
+            "nameLocation": "198:6:157",
+            "nodeType": "VariableDeclaration",
+            "scope": 18465,
+            "src": "173:31:157",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_struct$_Timestamp_$31846_storage",
+              "typeString": "struct Timers.Timestamp"
+            },
+            "typeName": {
+              "id": 18392,
+              "nodeType": "UserDefinedTypeName",
+              "pathNode": {
+                "id": 18391,
+                "name": "Timers.Timestamp",
+                "nodeType": "IdentifierPath",
+                "referencedDeclaration": 31846,
+                "src": "173:16:157"
+              },
+              "referencedDeclaration": 31846,
+              "src": "173:16:157",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_Timestamp_$31846_storage_ptr",
+                "typeString": "struct Timers.Timestamp"
+              }
+            },
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 18402,
+              "nodeType": "Block",
+              "src": "265:46:157",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "expression": {
+                        "id": 18398,
+                        "name": "_timer",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 18393,
+                        "src": "283:6:157",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Timestamp_$31846_storage",
+                          "typeString": "struct Timers.Timestamp storage ref"
+                        }
+                      },
+                      "id": 18399,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "getDeadline",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 31858,
+                      "src": "283:18:157",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_pure$_t_struct$_Timestamp_$31846_memory_ptr_$returns$_t_uint64_$bound_to$_t_struct$_Timestamp_$31846_memory_ptr_$",
+                        "typeString": "function (struct Timers.Timestamp memory) pure returns (uint64)"
+                      }
+                    },
+                    "id": 18400,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "283:20:157",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint64",
+                      "typeString": "uint64"
+                    }
+                  },
+                  "functionReturnParameters": 18397,
+                  "id": 18401,
+                  "nodeType": "Return",
+                  "src": "276:27:157"
+                }
+              ]
+            },
+            "functionSelector": "5f8d96de",
+            "id": 18403,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getDeadline",
+            "nameLocation": "222:11:157",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 18394,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "233:2:157"
+            },
+            "returnParameters": {
+              "id": 18397,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18396,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18403,
+                  "src": "257:6:157",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint64",
+                    "typeString": "uint64"
+                  },
+                  "typeName": {
+                    "id": 18395,
+                    "name": "uint64",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "257:6:157",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint64",
+                      "typeString": "uint64"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "256:8:157"
+            },
+            "scope": 18465,
+            "src": "213:98:157",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 18414,
+              "nodeType": "Block",
+              "src": "365:48:157",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 18411,
+                        "name": "timestamp",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 18405,
+                        "src": "395:9:157",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint64",
+                          "typeString": "uint64"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint64",
+                          "typeString": "uint64"
+                        }
+                      ],
+                      "expression": {
+                        "id": 18408,
+                        "name": "_timer",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 18393,
+                        "src": "376:6:157",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Timestamp_$31846_storage",
+                          "typeString": "struct Timers.Timestamp storage ref"
+                        }
+                      },
+                      "id": 18410,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "setDeadline",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 31873,
+                      "src": "376:18:157",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Timestamp_$31846_storage_ptr_$_t_uint64_$returns$__$bound_to$_t_struct$_Timestamp_$31846_storage_ptr_$",
+                        "typeString": "function (struct Timers.Timestamp storage pointer,uint64)"
+                      }
+                    },
+                    "id": 18412,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "376:29:157",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 18413,
+                  "nodeType": "ExpressionStatement",
+                  "src": "376:29:157"
+                }
+              ]
+            },
+            "functionSelector": "aebc0483",
+            "id": 18415,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setDeadline",
+            "nameLocation": "328:11:157",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 18406,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18405,
+                  "mutability": "mutable",
+                  "name": "timestamp",
+                  "nameLocation": "347:9:157",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18415,
+                  "src": "340:16:157",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint64",
+                    "typeString": "uint64"
+                  },
+                  "typeName": {
+                    "id": 18404,
+                    "name": "uint64",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "340:6:157",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint64",
+                      "typeString": "uint64"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "339:18:157"
+            },
+            "returnParameters": {
+              "id": 18407,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "365:0:157"
+            },
+            "scope": 18465,
+            "src": "319:94:157",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 18423,
+              "nodeType": "Block",
+              "src": "445:33:157",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "expression": {
+                        "id": 18418,
+                        "name": "_timer",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 18393,
+                        "src": "456:6:157",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Timestamp_$31846_storage",
+                          "typeString": "struct Timers.Timestamp storage ref"
+                        }
+                      },
+                      "id": 18420,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "reset",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 31886,
+                      "src": "456:12:157",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Timestamp_$31846_storage_ptr_$returns$__$bound_to$_t_struct$_Timestamp_$31846_storage_ptr_$",
+                        "typeString": "function (struct Timers.Timestamp storage pointer)"
+                      }
+                    },
+                    "id": 18421,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "456:14:157",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 18422,
+                  "nodeType": "ExpressionStatement",
+                  "src": "456:14:157"
+                }
+              ]
+            },
+            "functionSelector": "d826f88f",
+            "id": 18424,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "reset",
+            "nameLocation": "430:5:157",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 18416,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "435:2:157"
+            },
+            "returnParameters": {
+              "id": 18417,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "445:0:157"
+            },
+            "scope": 18465,
+            "src": "421:57:157",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 18433,
+              "nodeType": "Block",
+              "src": "532:42:157",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "expression": {
+                        "id": 18429,
+                        "name": "_timer",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 18393,
+                        "src": "550:6:157",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Timestamp_$31846_storage",
+                          "typeString": "struct Timers.Timestamp storage ref"
+                        }
+                      },
+                      "id": 18430,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "isUnset",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 31900,
+                      "src": "550:14:157",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_pure$_t_struct$_Timestamp_$31846_memory_ptr_$returns$_t_bool_$bound_to$_t_struct$_Timestamp_$31846_memory_ptr_$",
+                        "typeString": "function (struct Timers.Timestamp memory) pure returns (bool)"
+                      }
+                    },
+                    "id": 18431,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "550:16:157",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 18428,
+                  "id": 18432,
+                  "nodeType": "Return",
+                  "src": "543:23:157"
+                }
+              ]
+            },
+            "functionSelector": "2260fe3a",
+            "id": 18434,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isUnset",
+            "nameLocation": "495:7:157",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 18425,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "502:2:157"
+            },
+            "returnParameters": {
+              "id": 18428,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18427,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18434,
+                  "src": "526:4:157",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 18426,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "526:4:157",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "525:6:157"
+            },
+            "scope": 18465,
+            "src": "486:88:157",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 18443,
+              "nodeType": "Block",
+              "src": "630:44:157",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "expression": {
+                        "id": 18439,
+                        "name": "_timer",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 18393,
+                        "src": "648:6:157",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Timestamp_$31846_storage",
+                          "typeString": "struct Timers.Timestamp storage ref"
+                        }
+                      },
+                      "id": 18440,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "isStarted",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 31914,
+                      "src": "648:16:157",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_pure$_t_struct$_Timestamp_$31846_memory_ptr_$returns$_t_bool_$bound_to$_t_struct$_Timestamp_$31846_memory_ptr_$",
+                        "typeString": "function (struct Timers.Timestamp memory) pure returns (bool)"
+                      }
+                    },
+                    "id": 18441,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "648:18:157",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 18438,
+                  "id": 18442,
+                  "nodeType": "Return",
+                  "src": "641:25:157"
+                }
+              ]
+            },
+            "functionSelector": "544736e6",
+            "id": 18444,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isStarted",
+            "nameLocation": "591:9:157",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 18435,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "600:2:157"
+            },
+            "returnParameters": {
+              "id": 18438,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18437,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18444,
+                  "src": "624:4:157",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 18436,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "624:4:157",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "623:6:157"
+            },
+            "scope": 18465,
+            "src": "582:92:157",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 18453,
+              "nodeType": "Block",
+              "src": "730:44:157",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "expression": {
+                        "id": 18449,
+                        "name": "_timer",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 18393,
+                        "src": "748:6:157",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Timestamp_$31846_storage",
+                          "typeString": "struct Timers.Timestamp storage ref"
+                        }
+                      },
+                      "id": 18450,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "isPending",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 31929,
+                      "src": "748:16:157",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$_t_struct$_Timestamp_$31846_memory_ptr_$returns$_t_bool_$bound_to$_t_struct$_Timestamp_$31846_memory_ptr_$",
+                        "typeString": "function (struct Timers.Timestamp memory) view returns (bool)"
+                      }
+                    },
+                    "id": 18451,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "748:18:157",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 18448,
+                  "id": 18452,
+                  "nodeType": "Return",
+                  "src": "741:25:157"
+                }
+              ]
+            },
+            "functionSelector": "9c30ad7e",
+            "id": 18454,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isPending",
+            "nameLocation": "691:9:157",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 18445,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "700:2:157"
+            },
+            "returnParameters": {
+              "id": 18448,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18447,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18454,
+                  "src": "724:4:157",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 18446,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "724:4:157",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "723:6:157"
+            },
+            "scope": 18465,
+            "src": "682:92:157",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 18463,
+              "nodeType": "Block",
+              "src": "830:44:157",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "expression": {
+                        "id": 18459,
+                        "name": "_timer",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 18393,
+                        "src": "848:6:157",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Timestamp_$31846_storage",
+                          "typeString": "struct Timers.Timestamp storage ref"
+                        }
+                      },
+                      "id": 18460,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "isExpired",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 31948,
+                      "src": "848:16:157",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$_t_struct$_Timestamp_$31846_memory_ptr_$returns$_t_bool_$bound_to$_t_struct$_Timestamp_$31846_memory_ptr_$",
+                        "typeString": "function (struct Timers.Timestamp memory) view returns (bool)"
+                      }
+                    },
+                    "id": 18461,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "848:18:157",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 18458,
+                  "id": 18462,
+                  "nodeType": "Return",
+                  "src": "841:25:157"
+                }
+              ]
+            },
+            "functionSelector": "2f13b60c",
+            "id": 18464,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isExpired",
+            "nameLocation": "791:9:157",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 18455,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "800:2:157"
+            },
+            "returnParameters": {
+              "id": 18458,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18457,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18464,
+                  "src": "824:4:157",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 18456,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "824:4:157",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "823:6:157"
+            },
+            "scope": 18465,
+            "src": "782:92:157",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 18466,
+        "src": "95:782:157",
+        "usedErrors": []
+      }
+    ],
+    "src": "35:844:157"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.14+commit.80d49f37.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.7",
+  "updatedAt": "2022-06-28T15:05:48.270Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

@@ -1,0 +1,1716 @@
+{
+  "contractName": "IArbSys",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "caller",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "destination",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "uniqueId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "batchNumber",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "indexInBatch",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "arbBlockNum",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "ethBlockNum",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "callvalue",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "L2ToL1Transaction",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "arbOSVersion",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "arbChainID",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "arbBlockNumber",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "destination",
+          "type": "address"
+        }
+      ],
+      "name": "withdrawEth",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "destination",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "calldataForL1",
+          "type": "bytes"
+        }
+      ],
+      "name": "sendTxToL1",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "getTransactionCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "index",
+          "type": "uint256"
+        }
+      ],
+      "name": "getStorageAt",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "isTopLevelCall",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "wasMyCallersAddressAliased",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "myCallersAddressWithoutAliasing",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "dest",
+          "type": "address"
+        }
+      ],
+      "name": "mapL1SenderContractAddressToL2Alias",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getStorageGasAvailable",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.14+commit.80d49f37\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"caller\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"destination\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"uniqueId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"batchNumber\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"indexInBatch\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"arbBlockNum\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"ethBlockNum\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"callvalue\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"L2ToL1Transaction\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"arbBlockNumber\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"arbChainID\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"arbOSVersion\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"getStorageAt\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getStorageGasAvailable\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"getTransactionCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"isTopLevelCall\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"dest\",\"type\":\"address\"}],\"name\":\"mapL1SenderContractAddressToL2Alias\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"myCallersAddressWithoutAliasing\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"destination\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"calldataForL1\",\"type\":\"bytes\"}],\"name\":\"sendTxToL1\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"wasMyCallersAddressAliased\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"destination\",\"type\":\"address\"}],\"name\":\"withdrawEth\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"payable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"arbBlockNumber()\":{\"returns\":{\"_0\":\"block number as int\"}},\"arbOSVersion()\":{\"returns\":{\"_0\":\"version number as int\"}},\"getStorageAt(address,uint256)\":{\"params\":{\"account\":\"target account\",\"index\":\"target index of storage slot\"},\"returns\":{\"_0\":\"stotage value for the given account at the given index\"}},\"getStorageGasAvailable()\":{\"returns\":{\"_0\":\"amount of storage gas available to the caller\"}},\"getTransactionCount(address)\":{\"params\":{\"account\":\"target account\"},\"returns\":{\"_0\":\"the number of transactions issued by the given external account or the account sequence number of the given contract\"}},\"isTopLevelCall()\":{\"returns\":{\"_0\":\"true if the caller of this was called directly from L1\"}},\"mapL1SenderContractAddressToL2Alias(address,address)\":{\"params\":{\"dest\":\"destination address\",\"sender\":\"sender address\"},\"returns\":{\"_0\":\"aliased sender address\"}},\"myCallersAddressWithoutAliasing()\":{\"returns\":{\"_0\":\"address of the caller's caller, without applying L1 contract address aliasing\"}},\"sendTxToL1(address,bytes)\":{\"params\":{\"calldataForL1\":\"(optional) calldata for L1 contract call\",\"destination\":\"recipient address on L1\"},\"returns\":{\"_0\":\"a unique identifier for this L2-to-L1 transaction.\"}},\"wasMyCallersAddressAliased()\":{\"returns\":{\"_0\":\"true iff the caller's address is an alias for an L1 contract address\"}},\"withdrawEth(address)\":{\"params\":{\"destination\":\"recipient address on L1\"},\"returns\":{\"_0\":\"unique identifier for this L2-to-L1 transaction.\"}}},\"title\":\"Precompiled contract that exists in every Arbitrum chain at address(100), 0x0000000000000000000000000000000000000064. Exposes a variety of system-level functionality.\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"arbBlockNumber()\":{\"notice\":\"Get Arbitrum block number (distinct from L1 block number; Arbitrum genesis block has block number 0)\"},\"arbOSVersion()\":{\"notice\":\"Get internal version number identifying an ArbOS build\"},\"getStorageAt(address,uint256)\":{\"notice\":\"get the value of target L2 storage slot This function is only callable from address 0 to prevent contracts from being able to call it\"},\"getStorageGasAvailable()\":{\"notice\":\"get the caller's amount of available storage gas\"},\"getTransactionCount(address)\":{\"notice\":\"get the number of transactions issued by the given external account or the account sequence number of the given contract\"},\"isTopLevelCall()\":{\"notice\":\"check if current call is coming from l1\"},\"mapL1SenderContractAddressToL2Alias(address,address)\":{\"notice\":\"map L1 sender contract address to its L2 alias\"},\"myCallersAddressWithoutAliasing()\":{\"notice\":\"return the address of the caller (of this caller of this), without applying L1 contract address aliasing\"},\"sendTxToL1(address,bytes)\":{\"notice\":\"Send a transaction to L1\"},\"wasMyCallersAddressAliased()\":{\"notice\":\"check if the caller (of this caller of this) is an aliased L1 contract address\"},\"withdrawEth(address)\":{\"notice\":\"Send given amount of Eth to dest from sender. This is a convenience function, which is equivalent to calling sendTxToL1 with empty calldataForL1.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/lib/openzeppelin/contracts/vendor/arbitrum/IArbSys.sol\":\"IArbSys\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[]},\"sources\":{\"project:/contracts/lib/openzeppelin/contracts/vendor/arbitrum/IArbSys.sol\":{\"keccak256\":\"0x57c82523bcec7e5803a61bb378df06470060b11a753225829b243d600b4c1c97\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://c5f0a85f5d36413e929fd8edba367160ddc7bd8b3671e5e564fe167443807c73\",\"dweb:/ipfs/QmXin1zuaMpT7GuMAxs3oeEj9zKpz6P5XSosg5w4DCstdc\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\r\n// OpenZeppelin Contracts (last updated v4.6.0) (vendor/arbitrum/IArbSys.sol)\r\npragma solidity >=0.4.21 <0.9.0;\r\n\r\n/**\r\n * @title Precompiled contract that exists in every Arbitrum chain at address(100), 0x0000000000000000000000000000000000000064. Exposes a variety of system-level functionality.\r\n */\r\ninterface IArbSys {\r\n    /**\r\n     * @notice Get internal version number identifying an ArbOS build\r\n     * @return version number as int\r\n     */\r\n    function arbOSVersion() external pure returns (uint256);\r\n\r\n    function arbChainID() external view returns (uint256);\r\n\r\n    /**\r\n     * @notice Get Arbitrum block number (distinct from L1 block number; Arbitrum genesis block has block number 0)\r\n     * @return block number as int\r\n     */\r\n    function arbBlockNumber() external view returns (uint256);\r\n\r\n    /**\r\n     * @notice Send given amount of Eth to dest from sender.\r\n     * This is a convenience function, which is equivalent to calling sendTxToL1 with empty calldataForL1.\r\n     * @param destination recipient address on L1\r\n     * @return unique identifier for this L2-to-L1 transaction.\r\n     */\r\n    function withdrawEth(address destination) external payable returns (uint256);\r\n\r\n    /**\r\n     * @notice Send a transaction to L1\r\n     * @param destination recipient address on L1\r\n     * @param calldataForL1 (optional) calldata for L1 contract call\r\n     * @return a unique identifier for this L2-to-L1 transaction.\r\n     */\r\n    function sendTxToL1(address destination, bytes calldata calldataForL1) external payable returns (uint256);\r\n\r\n    /**\r\n     * @notice get the number of transactions issued by the given external account or the account sequence number of the given contract\r\n     * @param account target account\r\n     * @return the number of transactions issued by the given external account or the account sequence number of the given contract\r\n     */\r\n    function getTransactionCount(address account) external view returns (uint256);\r\n\r\n    /**\r\n     * @notice get the value of target L2 storage slot\r\n     * This function is only callable from address 0 to prevent contracts from being able to call it\r\n     * @param account target account\r\n     * @param index target index of storage slot\r\n     * @return stotage value for the given account at the given index\r\n     */\r\n    function getStorageAt(address account, uint256 index) external view returns (uint256);\r\n\r\n    /**\r\n     * @notice check if current call is coming from l1\r\n     * @return true if the caller of this was called directly from L1\r\n     */\r\n    function isTopLevelCall() external view returns (bool);\r\n\r\n    /**\r\n     * @notice check if the caller (of this caller of this) is an aliased L1 contract address\r\n     * @return true iff the caller's address is an alias for an L1 contract address\r\n     */\r\n    function wasMyCallersAddressAliased() external view returns (bool);\r\n\r\n    /**\r\n     * @notice return the address of the caller (of this caller of this), without applying L1 contract address aliasing\r\n     * @return address of the caller's caller, without applying L1 contract address aliasing\r\n     */\r\n    function myCallersAddressWithoutAliasing() external view returns (address);\r\n\r\n    /**\r\n     * @notice map L1 sender contract address to its L2 alias\r\n     * @param sender sender address\r\n     * @param dest destination address\r\n     * @return aliased sender address\r\n     */\r\n    function mapL1SenderContractAddressToL2Alias(address sender, address dest) external pure returns (address);\r\n\r\n    /**\r\n     * @notice get the caller's amount of available storage gas\r\n     * @return amount of storage gas available to the caller\r\n     */\r\n    function getStorageGasAvailable() external view returns (uint256);\r\n\r\n    event L2ToL1Transaction(\r\n        address caller,\r\n        address indexed destination,\r\n        uint256 indexed uniqueId,\r\n        uint256 indexed batchNumber,\r\n        uint256 indexInBatch,\r\n        uint256 arbBlockNum,\r\n        uint256 ethBlockNum,\r\n        uint256 timestamp,\r\n        uint256 callvalue,\r\n        bytes data\r\n    );\r\n}\r\n",
+  "sourcePath": "D:\\work\\www\\yopu_dapp_nft\\contracts\\lib\\openzeppelin\\contracts\\vendor\\arbitrum\\IArbSys.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/lib/openzeppelin/contracts/vendor/arbitrum/IArbSys.sol",
+    "exportedSymbols": {
+      "IArbSys": [
+        39228
+      ]
+    },
+    "id": 39229,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 39117,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".21",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "112:32:265"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IArbSys",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 39118,
+          "nodeType": "StructuredDocumentation",
+          "src": "148:186:265",
+          "text": " @title Precompiled contract that exists in every Arbitrum chain at address(100), 0x0000000000000000000000000000000000000064. Exposes a variety of system-level functionality."
+        },
+        "fullyImplemented": false,
+        "id": 39228,
+        "linearizedBaseContracts": [
+          39228
+        ],
+        "name": "IArbSys",
+        "nameLocation": "346:7:265",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "documentation": {
+              "id": 39119,
+              "nodeType": "StructuredDocumentation",
+              "src": "361:121:265",
+              "text": " @notice Get internal version number identifying an ArbOS build\n @return version number as int"
+            },
+            "functionSelector": "051038f2",
+            "id": 39124,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "arbOSVersion",
+            "nameLocation": "497:12:265",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 39120,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "509:2:265"
+            },
+            "returnParameters": {
+              "id": 39123,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 39122,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39124,
+                  "src": "535:7:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 39121,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "535:7:265",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "534:9:265"
+            },
+            "scope": 39228,
+            "src": "488:56:265",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "d127f54a",
+            "id": 39129,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "arbChainID",
+            "nameLocation": "561:10:265",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 39125,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "571:2:265"
+            },
+            "returnParameters": {
+              "id": 39128,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 39127,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39129,
+                  "src": "597:7:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 39126,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "597:7:265",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "596:9:265"
+            },
+            "scope": 39228,
+            "src": "552:54:265",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 39130,
+              "nodeType": "StructuredDocumentation",
+              "src": "614:165:265",
+              "text": " @notice Get Arbitrum block number (distinct from L1 block number; Arbitrum genesis block has block number 0)\n @return block number as int"
+            },
+            "functionSelector": "a3b1b31d",
+            "id": 39135,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "arbBlockNumber",
+            "nameLocation": "794:14:265",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 39131,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "808:2:265"
+            },
+            "returnParameters": {
+              "id": 39134,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 39133,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39135,
+                  "src": "834:7:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 39132,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "834:7:265",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "833:9:265"
+            },
+            "scope": 39228,
+            "src": "785:58:265",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 39136,
+              "nodeType": "StructuredDocumentation",
+              "src": "851:298:265",
+              "text": " @notice Send given amount of Eth to dest from sender.\n This is a convenience function, which is equivalent to calling sendTxToL1 with empty calldataForL1.\n @param destination recipient address on L1\n @return unique identifier for this L2-to-L1 transaction."
+            },
+            "functionSelector": "25e16063",
+            "id": 39143,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "withdrawEth",
+            "nameLocation": "1164:11:265",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 39139,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 39138,
+                  "mutability": "mutable",
+                  "name": "destination",
+                  "nameLocation": "1184:11:265",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39143,
+                  "src": "1176:19:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 39137,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1176:7:265",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1175:21:265"
+            },
+            "returnParameters": {
+              "id": 39142,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 39141,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39143,
+                  "src": "1223:7:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 39140,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1223:7:265",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1222:9:265"
+            },
+            "scope": 39228,
+            "src": "1155:77:265",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 39144,
+              "nodeType": "StructuredDocumentation",
+              "src": "1240:241:265",
+              "text": " @notice Send a transaction to L1\n @param destination recipient address on L1\n @param calldataForL1 (optional) calldata for L1 contract call\n @return a unique identifier for this L2-to-L1 transaction."
+            },
+            "functionSelector": "928c169a",
+            "id": 39153,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "sendTxToL1",
+            "nameLocation": "1496:10:265",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 39149,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 39146,
+                  "mutability": "mutable",
+                  "name": "destination",
+                  "nameLocation": "1515:11:265",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39153,
+                  "src": "1507:19:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 39145,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1507:7:265",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 39148,
+                  "mutability": "mutable",
+                  "name": "calldataForL1",
+                  "nameLocation": "1543:13:265",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39153,
+                  "src": "1528:28:265",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 39147,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1528:5:265",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1506:51:265"
+            },
+            "returnParameters": {
+              "id": 39152,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 39151,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39153,
+                  "src": "1584:7:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 39150,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1584:7:265",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1583:9:265"
+            },
+            "scope": 39228,
+            "src": "1487:106:265",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 39154,
+              "nodeType": "StructuredDocumentation",
+              "src": "1601:320:265",
+              "text": " @notice get the number of transactions issued by the given external account or the account sequence number of the given contract\n @param account target account\n @return the number of transactions issued by the given external account or the account sequence number of the given contract"
+            },
+            "functionSelector": "23ca0cd2",
+            "id": 39161,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getTransactionCount",
+            "nameLocation": "1936:19:265",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 39157,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 39156,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "1964:7:265",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39161,
+                  "src": "1956:15:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 39155,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1956:7:265",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1955:17:265"
+            },
+            "returnParameters": {
+              "id": 39160,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 39159,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39161,
+                  "src": "1996:7:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 39158,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1996:7:265",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1995:9:265"
+            },
+            "scope": 39228,
+            "src": "1927:78:265",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 39162,
+              "nodeType": "StructuredDocumentation",
+              "src": "2013:329:265",
+              "text": " @notice get the value of target L2 storage slot\n This function is only callable from address 0 to prevent contracts from being able to call it\n @param account target account\n @param index target index of storage slot\n @return stotage value for the given account at the given index"
+            },
+            "functionSelector": "a169625f",
+            "id": 39171,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getStorageAt",
+            "nameLocation": "2357:12:265",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 39167,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 39164,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "2378:7:265",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39171,
+                  "src": "2370:15:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 39163,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2370:7:265",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 39166,
+                  "mutability": "mutable",
+                  "name": "index",
+                  "nameLocation": "2395:5:265",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39171,
+                  "src": "2387:13:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 39165,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2387:7:265",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2369:32:265"
+            },
+            "returnParameters": {
+              "id": 39170,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 39169,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39171,
+                  "src": "2425:7:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 39168,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2425:7:265",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2424:9:265"
+            },
+            "scope": 39228,
+            "src": "2348:86:265",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 39172,
+              "nodeType": "StructuredDocumentation",
+              "src": "2442:139:265",
+              "text": " @notice check if current call is coming from l1\n @return true if the caller of this was called directly from L1"
+            },
+            "functionSelector": "08bd624c",
+            "id": 39177,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isTopLevelCall",
+            "nameLocation": "2596:14:265",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 39173,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2610:2:265"
+            },
+            "returnParameters": {
+              "id": 39176,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 39175,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39177,
+                  "src": "2636:4:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 39174,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2636:4:265",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2635:6:265"
+            },
+            "scope": 39228,
+            "src": "2587:55:265",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 39178,
+              "nodeType": "StructuredDocumentation",
+              "src": "2650:192:265",
+              "text": " @notice check if the caller (of this caller of this) is an aliased L1 contract address\n @return true iff the caller's address is an alias for an L1 contract address"
+            },
+            "functionSelector": "175a260b",
+            "id": 39183,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "wasMyCallersAddressAliased",
+            "nameLocation": "2857:26:265",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 39179,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2883:2:265"
+            },
+            "returnParameters": {
+              "id": 39182,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 39181,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39183,
+                  "src": "2909:4:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 39180,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2909:4:265",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2908:6:265"
+            },
+            "scope": 39228,
+            "src": "2848:67:265",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 39184,
+              "nodeType": "StructuredDocumentation",
+              "src": "2923:227:265",
+              "text": " @notice return the address of the caller (of this caller of this), without applying L1 contract address aliasing\n @return address of the caller's caller, without applying L1 contract address aliasing"
+            },
+            "functionSelector": "d74523b3",
+            "id": 39189,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "myCallersAddressWithoutAliasing",
+            "nameLocation": "3165:31:265",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 39185,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3196:2:265"
+            },
+            "returnParameters": {
+              "id": 39188,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 39187,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39189,
+                  "src": "3222:7:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 39186,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3222:7:265",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3221:9:265"
+            },
+            "scope": 39228,
+            "src": "3156:75:265",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 39190,
+              "nodeType": "StructuredDocumentation",
+              "src": "3239:191:265",
+              "text": " @notice map L1 sender contract address to its L2 alias\n @param sender sender address\n @param dest destination address\n @return aliased sender address"
+            },
+            "functionSelector": "4dbbd506",
+            "id": 39199,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "mapL1SenderContractAddressToL2Alias",
+            "nameLocation": "3445:35:265",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 39195,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 39192,
+                  "mutability": "mutable",
+                  "name": "sender",
+                  "nameLocation": "3489:6:265",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39199,
+                  "src": "3481:14:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 39191,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3481:7:265",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 39194,
+                  "mutability": "mutable",
+                  "name": "dest",
+                  "nameLocation": "3505:4:265",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39199,
+                  "src": "3497:12:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 39193,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3497:7:265",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3480:30:265"
+            },
+            "returnParameters": {
+              "id": 39198,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 39197,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39199,
+                  "src": "3534:7:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 39196,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3534:7:265",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3533:9:265"
+            },
+            "scope": 39228,
+            "src": "3436:107:265",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 39200,
+              "nodeType": "StructuredDocumentation",
+              "src": "3551:139:265",
+              "text": " @notice get the caller's amount of available storage gas\n @return amount of storage gas available to the caller"
+            },
+            "functionSelector": "a94597ff",
+            "id": 39205,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getStorageGasAvailable",
+            "nameLocation": "3705:22:265",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 39201,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3727:2:265"
+            },
+            "returnParameters": {
+              "id": 39204,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 39203,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39205,
+                  "src": "3753:7:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 39202,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3753:7:265",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3752:9:265"
+            },
+            "scope": 39228,
+            "src": "3696:66:265",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "5baaa87db386365b5c161be377bc3d8e317e8d98d71a3ca7ed7d555340c8f767",
+            "id": 39227,
+            "name": "L2ToL1Transaction",
+            "nameLocation": "3776:17:265",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 39226,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 39207,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "caller",
+                  "nameLocation": "3812:6:265",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39227,
+                  "src": "3804:14:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 39206,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3804:7:265",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 39209,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "destination",
+                  "nameLocation": "3845:11:265",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39227,
+                  "src": "3829:27:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 39208,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3829:7:265",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 39211,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "uniqueId",
+                  "nameLocation": "3883:8:265",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39227,
+                  "src": "3867:24:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 39210,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3867:7:265",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 39213,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "batchNumber",
+                  "nameLocation": "3918:11:265",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39227,
+                  "src": "3902:27:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 39212,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3902:7:265",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 39215,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "indexInBatch",
+                  "nameLocation": "3948:12:265",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39227,
+                  "src": "3940:20:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 39214,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3940:7:265",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 39217,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "arbBlockNum",
+                  "nameLocation": "3979:11:265",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39227,
+                  "src": "3971:19:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 39216,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3971:7:265",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 39219,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "ethBlockNum",
+                  "nameLocation": "4009:11:265",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39227,
+                  "src": "4001:19:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 39218,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4001:7:265",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 39221,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "timestamp",
+                  "nameLocation": "4039:9:265",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39227,
+                  "src": "4031:17:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 39220,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4031:7:265",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 39223,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "callvalue",
+                  "nameLocation": "4067:9:265",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39227,
+                  "src": "4059:17:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 39222,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4059:7:265",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 39225,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "data",
+                  "nameLocation": "4093:4:265",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 39227,
+                  "src": "4087:10:265",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 39224,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4087:5:265",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3793:311:265"
+            },
+            "src": "3770:335:265"
+          }
+        ],
+        "scope": 39229,
+        "src": "336:3772:265",
+        "usedErrors": []
+      }
+    ],
+    "src": "112:3998:265"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.14+commit.80d49f37.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.7",
+  "updatedAt": "2022-06-28T15:05:49.072Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "arbBlockNumber()": {
+        "returns": {
+          "_0": "block number as int"
+        }
+      },
+      "arbOSVersion()": {
+        "returns": {
+          "_0": "version number as int"
+        }
+      },
+      "getStorageAt(address,uint256)": {
+        "params": {
+          "account": "target account",
+          "index": "target index of storage slot"
+        },
+        "returns": {
+          "_0": "stotage value for the given account at the given index"
+        }
+      },
+      "getStorageGasAvailable()": {
+        "returns": {
+          "_0": "amount of storage gas available to the caller"
+        }
+      },
+      "getTransactionCount(address)": {
+        "params": {
+          "account": "target account"
+        },
+        "returns": {
+          "_0": "the number of transactions issued by the given external account or the account sequence number of the given contract"
+        }
+      },
+      "isTopLevelCall()": {
+        "returns": {
+          "_0": "true if the caller of this was called directly from L1"
+        }
+      },
+      "mapL1SenderContractAddressToL2Alias(address,address)": {
+        "params": {
+          "dest": "destination address",
+          "sender": "sender address"
+        },
+        "returns": {
+          "_0": "aliased sender address"
+        }
+      },
+      "myCallersAddressWithoutAliasing()": {
+        "returns": {
+          "_0": "address of the caller's caller, without applying L1 contract address aliasing"
+        }
+      },
+      "sendTxToL1(address,bytes)": {
+        "params": {
+          "calldataForL1": "(optional) calldata for L1 contract call",
+          "destination": "recipient address on L1"
+        },
+        "returns": {
+          "_0": "a unique identifier for this L2-to-L1 transaction."
+        }
+      },
+      "wasMyCallersAddressAliased()": {
+        "returns": {
+          "_0": "true iff the caller's address is an alias for an L1 contract address"
+        }
+      },
+      "withdrawEth(address)": {
+        "params": {
+          "destination": "recipient address on L1"
+        },
+        "returns": {
+          "_0": "unique identifier for this L2-to-L1 transaction."
+        }
+      }
+    },
+    "title": "Precompiled contract that exists in every Arbitrum chain at address(100), 0x0000000000000000000000000000000000000064. Exposes a variety of system-level functionality.",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "arbBlockNumber()": {
+        "notice": "Get Arbitrum block number (distinct from L1 block number; Arbitrum genesis block has block number 0)"
+      },
+      "arbOSVersion()": {
+        "notice": "Get internal version number identifying an ArbOS build"
+      },
+      "getStorageAt(address,uint256)": {
+        "notice": "get the value of target L2 storage slot This function is only callable from address 0 to prevent contracts from being able to call it"
+      },
+      "getStorageGasAvailable()": {
+        "notice": "get the caller's amount of available storage gas"
+      },
+      "getTransactionCount(address)": {
+        "notice": "get the number of transactions issued by the given external account or the account sequence number of the given contract"
+      },
+      "isTopLevelCall()": {
+        "notice": "check if current call is coming from l1"
+      },
+      "mapL1SenderContractAddressToL2Alias(address,address)": {
+        "notice": "map L1 sender contract address to its L2 alias"
+      },
+      "myCallersAddressWithoutAliasing()": {
+        "notice": "return the address of the caller (of this caller of this), without applying L1 contract address aliasing"
+      },
+      "sendTxToL1(address,bytes)": {
+        "notice": "Send a transaction to L1"
+      },
+      "wasMyCallersAddressAliased()": {
+        "notice": "check if the caller (of this caller of this) is an aliased L1 contract address"
+      },
+      "withdrawEth(address)": {
+        "notice": "Send given amount of Eth to dest from sender. This is a convenience function, which is equivalent to calling sendTxToL1 with empty calldataForL1."
+      }
+    },
+    "version": 1
+  }
+}
