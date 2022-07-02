@@ -1,8 +1,10 @@
 package token
 
 import (
+	"context"
 	"fmt"
 
+	"ypt_server/config"
 	"ypt_server/contracts"
 	"ypt_server/pkg/ether"
 	"ypt_server/pkg/ifps"
@@ -11,7 +13,7 @@ import (
 )
 
 var (
-	defaultContractAddress = "0x546A1878AA552B5dC832Cf32cAeCBA6a87ffD975"
+	defaultContractAddress = "0x0Ad6C6B9cAd650d5A61D883cc7F2D15B49697028"
 )
 
 //ERC721_YopuNFTProperty
@@ -41,18 +43,28 @@ func (t *ERC721_YopuNFT) Mint() error {
 		return err
 	}
 
-	ypt, err := contracts.NewYopuNFT(ether.HexToAddress(defaultContractAddress), conn)
+	contractAddress := defaultContractAddress
+	if len(config.G.Contract.Address) <= 0 {
+		contractAddress = config.G.Contract.Address
+	}
+
+	ypt, err := contracts.NewYopuNFT(ether.HexToAddress(contractAddress), conn)
+	if err != nil {
+		return err
+	}
+
+	chainID, err := conn.NetworkID(context.Background())
+	if err != nil {
+		return err
+	}
+
+	transactOpts, err := bind.NewKeyedTransactorWithChainID(t.Account.ECDSA_PrivateKey, chainID)
 	if err != nil {
 		return err
 	}
 
 	uri := fmt.Sprintf("https://ipfs.io/%s", cid)
-	transaction, err := ypt.SafeMint(t.Account.EthAddress, uri)
-	if err != nil {
-		return err
-	}
-
-	transactOpts, err := bind.NewTransactorWithChainID(key, "test", chainID)
+	transaction, err := ypt.SafeMint(transactOpts, t.Account.EthAddress, uri)
 	if err != nil {
 		return err
 	}

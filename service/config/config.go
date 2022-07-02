@@ -20,9 +20,10 @@ type ServeConf struct {
 }
 
 type ConfYaml struct {
-	Serve ServeConf               `yaml:"serve"`
-	MySQL mysql.MultipleMysqlConf `yaml:"mysql"`
-	Redis redis.RedisConf         `yaml:"redis"`
+	Serve    ServeConf               `yaml:"serve"`
+	MySQL    mysql.MultipleMysqlConf `yaml:"mysql"`
+	Redis    redis.RedisConf         `yaml:"redis"`
+	Contract ContractConf            `yaml:"contract"`
 }
 
 // G Global configuration instance
