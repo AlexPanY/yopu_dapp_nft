@@ -1,6 +1,7 @@
 package v1
 
 import (
+	"errors"
 	"ypt_server/api"
 	"ypt_server/errno"
 	"ypt_server/pkg/ether"
@@ -37,6 +38,19 @@ func CreateYPTToken(c *gin.Context) {
 		Properties:  req.Properties,
 	}
 
+	account, err := token.FindAccountByAddress(t.Account.Address)
+	if err != nil {
+		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)
+		return
+	}
+
+	if account.ID <= 0 {
+		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, errors.New("account is not exists"))
+		return
+	}
+
+	t.Account.AccountID = uint64(account.ID)
+
 	if err := t.Mint(); err != nil {
 		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)
 		return
@@ -46,7 +60,7 @@ func CreateYPTToken(c *gin.Context) {
 }
 
 type DescribeAssetListRequest struct {
-	Address string `json:"address"`
+	AccountID int64 `json:"account_id"`
 }
 
 //DescribeAssetList
@@ -57,5 +71,7 @@ func DescribeAssetList(c *gin.Context) {
 		return
 	}
 
-	api.SuccJSONWithData(c, 1)
+	tokens := token.FindTokensByAccountID(req.AccountID)
+
+	api.SuccJSONWithData(c, tokens)
 }

@@ -35,10 +35,26 @@ func FindAccountByID(accountID int64) (a YPTAccount, err error) {
 	return
 }
 
+//FindAccountByAddress
+func FindAccountByAddress(address string) (a YPTAccount, err error) {
+	a = YPTAccount{
+		Address: address,
+	}
+	err = (&a).FindByID()
+	return
+}
+
 //FindByID
 func (a *YPTAccount) FindByID() error {
 	return a.findByMap(map[string]interface{}{
 		"id": a.ID,
+	})
+}
+
+//FindByID
+func (a *YPTAccount) FindByAddress() error {
+	return a.findByMap(map[string]interface{}{
+		"address": a.Address,
 	})
 }
 

@@ -18,7 +18,7 @@ var (
 
 //ERC721_YopuNFTProperty
 type ERC721_YopuNFTProperty struct {
-	field string `json:"field"`
+	Field string `json:"field"`
 	Value string `json:"value"`
 }
 
@@ -70,6 +70,16 @@ func (t *ERC721_YopuNFT) Mint() error {
 	}
 
 	fmt.Println(transaction)
+
+	yptToken := &YopuNFTToken{
+		AccountID:      int64(t.Account.AccountID),
+		AccountAddress: t.Account.Address,
+	}
+
+	if err := yptToken.Create(); err != nil {
+
+	}
+
 	return nil
 }
 

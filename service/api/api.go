@@ -47,7 +47,6 @@ func SuccJSONWithData(c *gin.Context, data interface{}) {
 	}
 
 	c.JSON(http.StatusOK, rep)
-	return
 }
 
 //ErrJSONWithRawErr
@@ -70,5 +69,4 @@ func ErrJSONWithRawErr(c *gin.Context, err *errno.Err, rawErr error) {
 	}
 
 	c.JSON(http.StatusOK, rep)
-	return
 }
