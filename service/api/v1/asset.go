@@ -37,7 +37,8 @@ func CreateYPTToken(c *gin.Context) {
 		Collection:  req.Collection,
 		Properties:  req.Properties,
 	}
-
+	api.SuccJSONWithData(c, 1)
+	return
 	account, err := token.FindAccountByAddress(t.Account.Address)
 	if err != nil {
 		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)
