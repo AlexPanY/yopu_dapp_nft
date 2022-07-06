@@ -8,7 +8,6 @@ window.YptNFT = {
 	Save: function() {
 		var self = this;
 
-
 		var reader;
 		$("#item_image").change(event=>{
 			const file = event.target.files[0];
@@ -42,18 +41,29 @@ window.YptNFT = {
     		}
 
     		// console.log(data);
-    		post(BASE_API_URL+"/v1/asset/create", data, function(resp){
+    		post(BASE_API_URL+"/v1/token/create", data, function(resp){
     			if(resp.code == API_RESP_SUCCESS) {
     				SuccessTips("Created successfully!");
     			}
     		})   
     	});
     },
-    AllTokens: function() {
+    Detail: function() {
+    	var tokenID = 1;
+    	var data = {
+    		TokenID: tokenID,
+    	};
+    	post(BASE_API_URL+"/v1/token/detail", data, function(resp){
+    		if(resp.code == API_RESP_SUCCESS) {
+    			// SuccessTips("Created successfully!");
+    		}
+    	})
+    },
+    List: function() {
     	var data = {
     		query: "all"
     	};
-    	post(BASE_API_URL+"/v1/asset/create", data, function(resp){
+    	post(BASE_API_URL+"/v1/token/list", data, function(resp){
     		if(resp.code == API_RESP_SUCCESS) {
     			SuccessTips("Created successfully!");
     		}
@@ -61,7 +71,15 @@ window.YptNFT = {
     	console.log("all");
     },
     AccountTokens: function() {
-
+    	var accountID = 1;
+    	var data = {
+    		account_id: account_id
+    	};
+    	post(BASE_API_URL+"/v1/account/assets", data, function(resp){
+    		if(resp.code == API_RESP_SUCCESS) {
+    			// SuccessTips("Created successfully!");
+    		}
+    	})
     }
 };
 
@@ -87,11 +105,8 @@ function post(url, data, callback) {
 		success: callback,
 	});
 }
-
-window.addEventListener('load', function(){
     // if(typeof web3 !== undefined){
     //     window.web3 = new Web3(web3.currentProvider);
     // } else{
     //     window.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
     // }
-});

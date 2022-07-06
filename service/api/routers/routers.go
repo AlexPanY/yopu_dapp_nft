@@ -20,10 +20,13 @@ func Load(g *gin.Engine) *gin.Engine {
 	{
 		v1Api.POST("/account/get", v1.GetAccountByID)
 		v1Api.POST("/account/create", v1.CreateAccount)
+		v1Api.POST("/account/assets", v1.DescribeAccountAssets)
 
 		//nft token
-		v1Api.POST("/asset/create", v1.CreateYPTToken)
-		v1Api.POST("/asset/list", v1.DescribeAssetList)
+		v1Api.POST("/token/create", v1.CreateToken)
+		v1Api.POST("/token/list", v1.DescribeTokenList)
+		v1Api.POST("/token/get", v1.DescribeToken)
+		v1Api.POST("/token/buy", v1.TransferToken)
 	}
 
 	return g

@@ -13,7 +13,7 @@ var (
 //NewEtherClientConn
 func NewEtherClientConn() (*ethclient.Client, error) {
 	rawURL := defaultRawURL
-	if len(config.G.Contract.Host) <= 0 {
+	if len(config.G.Contract.Host) > 0 {
 		rawURL = config.G.Contract.Host
 	}
 	client, err := ethclient.Dial(rawURL)

@@ -4,21 +4,16 @@ import (
 	"errors"
 
 	"ypt_server/api"
+	"ypt_server/api/v1/request"
 	"ypt_server/errno"
 	"ypt_server/token"
 
 	"github.com/gin-gonic/gin"
 )
 
-type CreateAccountRequest struct {
-	Nickname string `json:"nickname"`
-	Avatar   string `json:"avatar"`
-	Address  string `json:"address"`
-}
-
 //CreateAccount
 func CreateAccount(c *gin.Context) {
-	var req CreateAccountRequest
+	var req request.CreateAccountRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
 		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)
 		return
@@ -46,14 +41,9 @@ func CreateAccount(c *gin.Context) {
 	api.SuccJSONWithData(c, []int{})
 }
 
-//GetAccountByIDRequest
-type GetAccountByIDRequest struct {
-	AccountID int64 `json:"account_id"`
-}
-
 //GetAccountByID - Get account info by account_id
 func GetAccountByID(c *gin.Context) {
-	var req GetAccountByIDRequest
+	var req request.GetAccountByIDRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
 		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)
 		return
@@ -71,5 +61,32 @@ func GetAccountByID(c *gin.Context) {
 	}
 
 	api.SuccJSONWithData(c, account)
+	return
+}
+
+//DescribeAccountAssets Get account assets
+func DescribeAccountAssets(c *gin.Context) {
+	var req request.GetAccountByIDRequest
+	if err := c.ShouldBindJSON(&req); err != nil {
+		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)
+		return
+	}
+	if req.AccountID <= 0 {
+		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, errors.New("`account_id` must be required."))
+		return
+	}
+
+	a, err := token.FindAccountByID(req.AccountID)
+	if err != nil {
+		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)
+		return
+	}
+
+	if err := (&a).BalanceOf(); err != nil {
+		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)
+		return
+	}
+
+	api.SuccJSONWithData(c, a)
 	return
 }

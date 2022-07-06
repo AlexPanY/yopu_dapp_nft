@@ -2,10 +2,14 @@ package token
 
 import (
 	"fmt"
+	"math/big"
 
 	"ypt_server/config"
+	"ypt_server/contracts"
+	"ypt_server/pkg/ether"
 	"ypt_server/pkg/mysql"
 
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"gorm.io/gorm"
 )
 
@@ -19,6 +23,56 @@ type YPTAccount struct {
 
 func (a *YPTAccount) TableName() string {
 	return `yp_account`
+}
+
+//Buy
+func (a *YPTAccount) Buy() error {
+	return nil
+}
+
+//BalanceOf
+func (a *YPTAccount) BalanceOf() error {
+	conn, err := ether.NewEtherClientConn()
+	if err != nil {
+		return err
+	}
+
+	contractAddress := defaultContractAddress
+	if len(config.G.Contract.Address) > 0 {
+		contractAddress = config.G.Contract.Address
+	}
+
+	caller, err := contracts.NewYopuNFTCaller(ether.HexToAddress(contractAddress), conn)
+	if err != nil {
+		return err
+	}
+
+	callopts := &bind.CallOpts{}
+
+	count, err := caller.BalanceOf(callopts, ether.HexToAddress(a.Address))
+	if err != nil {
+		return err
+	}
+
+	var i int64 = 1
+	for {
+		tokenID := big.NewInt(i)
+
+		if count.Cmp(tokenID) < 0 {
+			break
+		}
+
+		tokenURI, err := caller.TokenURI(callopts, tokenID)
+		if err != nil {
+			break
+		}
+		fmt.Println(fmt.Sprintf("------TokenID: %v, URI: %v-----", tokenID, tokenURI))
+
+		i++
+	}
+
+	fmt.Println(fmt.Sprintf("------BalanceOf: %v-----", count))
+	return nil
 }
 
 //Create
@@ -40,7 +94,7 @@ func FindAccountByAddress(address string) (a YPTAccount, err error) {
 	a = YPTAccount{
 		Address: address,
 	}
-	err = (&a).FindByID()
+	err = (&a).FindByAddress()
 	return
 }
 

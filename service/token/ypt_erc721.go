@@ -3,6 +3,7 @@ package token
 import (
 	"context"
 	"fmt"
+	"math/big"
 
 	"ypt_server/config"
 	"ypt_server/contracts"
@@ -25,11 +26,43 @@ type ERC721_YopuNFTProperty struct {
 //ERC721_YopuNFT
 type ERC721_YopuNFT struct {
 	Account     ether.Account             `json:"-"`
+	TokenID     *big.Int                  `json:"-"`
 	Name        string                    `json:"name"`
 	Description string                    `json:"description"`
 	Image       string                    `json:"image"`
 	Collection  string                    `json:"collection"`
 	Properties  []*ERC721_YopuNFTProperty `json:"properties"`
+}
+
+//MetadataURI
+func (t *ERC721_YopuNFT) MetadataURI() (string, error) {
+	conn, err := ether.NewEtherClientConn()
+	if err != nil {
+		return "", err
+	}
+
+	contractAddress := defaultContractAddress
+	if len(config.G.Contract.Address) > 0 {
+		contractAddress = config.G.Contract.Address
+	}
+
+	caller, err := contracts.NewYopuNFTCaller(ether.HexToAddress(contractAddress), conn)
+	if err != nil {
+		return "", err
+	}
+
+	return caller.TokenURI(&bind.CallOpts{}, t.TokenID)
+}
+
+//Get
+func (t *ERC721_YopuNFT) Get() error {
+	uri, err := t.MetadataURI()
+	if err != nil {
+		return err
+	}
+
+	fmt.Println(uri)
+	return nil
 }
 
 //Mint Minting a single token based on ERC721.
@@ -44,7 +77,7 @@ func (t *ERC721_YopuNFT) Mint() error {
 	}
 
 	contractAddress := defaultContractAddress
-	if len(config.G.Contract.Address) <= 0 {
+	if len(config.G.Contract.Address) > 0 {
 		contractAddress = config.G.Contract.Address
 	}
 

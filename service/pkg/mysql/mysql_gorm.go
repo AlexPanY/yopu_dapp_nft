@@ -51,6 +51,7 @@ func NewGORMConns(confs MultipleMysqlConf) (GormConns, error) {
 		conn.SetConnMaxLifetime(time.Second * 600)
 		conn.SetMaxIdleConns(10)
 		conn.SetMaxOpenConns(200)
+		// conn.LogMode(true)
 
 		conns[k] = orm
 	}
