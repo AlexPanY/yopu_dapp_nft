@@ -12,6 +12,7 @@ require (
 	github.com/gin-gonic/gin v1.8.1 // indirect
 	github.com/go-redis/redis v6.15.9+incompatible // indirect
 	github.com/ipfs/go-ipfs-api v0.3.0 // indirect
+	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/libp2p/go-libp2p-metrics v0.1.0 // indirect
 	github.com/libp2p/go-libp2p-peer v0.2.0 // indirect
 	github.com/multiformats/go-multiaddr-net v0.1.1 // indirect

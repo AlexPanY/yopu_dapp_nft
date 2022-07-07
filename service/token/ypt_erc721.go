@@ -2,6 +2,7 @@ package token
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"math/big"
 
@@ -9,9 +10,13 @@ import (
 	"ypt_server/contracts"
 	"ypt_server/pkg/ether"
 	"ypt_server/pkg/ifps"
+	"ypt_server/pkg/proxy"
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
+	jsoniter "github.com/json-iterator/go"
 )
+
+var json = jsoniter.ConfigCompatibleWithStandardLibrary
 
 var (
 	defaultContractAddress = "0x0Ad6C6B9cAd650d5A61D883cc7F2D15B49697028"
@@ -62,6 +67,24 @@ func (t *ERC721_YopuNFT) Get() error {
 	}
 
 	fmt.Println(uri)
+	idx := strings.Index(uri, "https://ipfs.io/")
+	if idx <= 0 {
+		return errors.New("incorrect ifps URI format")
+	}
+
+	// testuri := "http://localhost:8080/ipfs/QmapAmUAS9Uou6xMTeZBtAgaVJhRskFJgL5RWmCfVSFe4M"
+	resultByte, err := proxy.Get(testuri, nil)
+	if err != nil {
+		return err
+	}
+
+	if err := json.Unmarshal(resultByte, &t); err != nil {
+		return err
+	}
+
+	fmt.Println(fmt.Sprintf("%+v", *t))
+	fmt.Println(string(resultByte))
+
 	return nil
 }
 
