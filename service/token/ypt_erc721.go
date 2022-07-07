@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"math/big"
+	"strings"
 
 	"ypt_server/config"
 	"ypt_server/contracts"
@@ -66,13 +67,13 @@ func (t *ERC721_YopuNFT) Get() error {
 		return err
 	}
 
-	fmt.Println(uri)
-	idx := strings.Index(uri, "https://ipfs.io/")
-	if idx <= 0 {
+	ipfsPreix := "https://ipfs.io/"
+	idx := strings.Index(uri, ipfsPreix)
+	if idx < 0 {
 		return errors.New("incorrect ifps URI format")
 	}
-
-	// testuri := "http://localhost:8080/ipfs/QmapAmUAS9Uou6xMTeZBtAgaVJhRskFJgL5RWmCfVSFe4M"
+	cid := uri[idx+len(ipfsPreix):]
+	testuri := "http://localhost:8080/ipfs/" + cid
 	resultByte, err := proxy.Get(testuri, nil)
 	if err != nil {
 		return err
@@ -81,9 +82,6 @@ func (t *ERC721_YopuNFT) Get() error {
 	if err := json.Unmarshal(resultByte, &t); err != nil {
 		return err
 	}
-
-	fmt.Println(fmt.Sprintf("%+v", *t))
-	fmt.Println(string(resultByte))
 
 	return nil
 }

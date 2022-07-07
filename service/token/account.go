@@ -1,6 +1,7 @@
 package token
 
 import (
+	"context"
 	"fmt"
 	"math/big"
 
@@ -14,11 +15,12 @@ import (
 )
 
 type YPTAccount struct {
-	ID        int64 `gorm:"primaryKey"`
-	Nickname  string
-	Avatar    string
-	Address   string
-	IsDeleted int
+	ID         int64 `gorm:"primaryKey"`
+	Nickname   string
+	Avatar     string
+	Address    string
+	Privatekey string `gorm:"-"`
+	IsDeleted  int
 }
 
 func (a *YPTAccount) TableName() string {
@@ -26,7 +28,50 @@ func (a *YPTAccount) TableName() string {
 }
 
 //Buy
-func (a *YPTAccount) Buy() error {
+func (a *YPTAccount) SafeTransfer(to string, iTokenID int64) error {
+
+	tokenID := big.NewInt(iTokenID)
+	t := ERC721_YopuNFT{
+		Account: ether.NewAccount(1, a.Address, a.Privatekey),
+		TokenID: tokenID,
+	}
+
+	if err := t.Get(); err != nil {
+		return err
+	}
+
+	conn, err := ether.NewEtherClientConn()
+	if err != nil {
+		return err
+	}
+
+	contractAddress := defaultContractAddress
+	if len(config.G.Contract.Address) > 0 {
+		contractAddress = config.G.Contract.Address
+	}
+
+	ypt, err := contracts.NewYopuNFT(ether.HexToAddress(contractAddress), conn)
+	if err != nil {
+		return err
+	}
+
+	chainID, err := conn.NetworkID(context.Background())
+	if err != nil {
+		return err
+	}
+
+	transactOpts, err := bind.NewKeyedTransactorWithChainID(t.Account.ECDSA_PrivateKey, chainID)
+	if err != nil {
+		return err
+	}
+
+	ts, err := ypt.SafeTransferFrom(transactOpts, t.Account.EthAddress, ether.HexToAddress(to), tokenID)
+	if err != nil {
+		return err
+	}
+
+	fmt.Println(ts)
+
 	return nil
 }
 

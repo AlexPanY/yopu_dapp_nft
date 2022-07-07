@@ -60,22 +60,19 @@ func TransferToken(c *gin.Context) {
 		return
 	}
 
-	account, err := token.FindAccountByAddress(req.From)
+	a, err := token.FindAccountByAddress(req.From)
 	if err != nil {
 		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)
 		return
 	}
-	if account.ID <= 0 {
+	if a.ID <= 0 {
 		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, errors.New("account is not exists"))
 		return
 	}
 
-	t := token.ERC721_YopuNFT{
-		Account: ether.NewAccount(1, req.From, req.Privatekey),
-		TokenID: big.NewInt(req.TokenID),
-	}
+	a.Privatekey = req.Privatekey
 
-	if err := t.Get(); err != nil {
+	if err := a.SafeTransfer(req.To, req.TokenID); err != nil {
 		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)
 		return
 	}
@@ -90,6 +87,17 @@ func DescribeToken(c *gin.Context) {
 		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)
 		return
 	}
+
+	t := token.ERC721_YopuNFT{
+		TokenID: big.NewInt(req.TokenID),
+	}
+
+	if err := t.Get(); err != nil {
+		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)
+		return
+	}
+
+	api.SuccJSONWithData(c, t)
 }
 
 //DescribeTokenList
