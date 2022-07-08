@@ -28,6 +28,53 @@ func (a *YPTAccount) TableName() string {
 }
 
 //Buy
+func (a *YPTAccount) Buy(iTokenID int64) error {
+	tokenID := big.NewInt(iTokenID)
+
+	conn, err := ether.NewEtherClientConn()
+	if err != nil {
+		return err
+	}
+
+	contractAddress := defaultContractAddress
+	if len(config.G.Contract.Address) > 0 {
+		contractAddress = config.G.Contract.Address
+	}
+
+	ypt, err := contracts.NewYopuNFT(ether.HexToAddress(contractAddress), conn)
+	if err != nil {
+		return err
+	}
+
+	chainID, err := conn.NetworkID(context.Background())
+	if err != nil {
+		return err
+	}
+
+	buyerAccount := ether.NewAccount(1, a.Address, a.Privatekey)
+
+	transactOpts, err := bind.NewKeyedTransactorWithChainID(buyerAccount.ECDSA_PrivateKey, chainID)
+	if err != nil {
+		return err
+	}
+
+	t := ERC721_YopuNFT{
+		TokenID: tokenID,
+	}
+	if err := t.SellingPrice(); err != nil {
+		return err
+	}
+	transactOpts.Value = t.Price
+
+	ts, err := ypt.Buy(transactOpts, tokenID)
+	if err != nil {
+		return err
+	}
+	fmt.Println(ts)
+	return nil
+}
+
+//Buy
 func (a *YPTAccount) SafeTransfer(to string, iTokenID int64) error {
 
 	tokenID := big.NewInt(iTokenID)
@@ -64,7 +111,10 @@ func (a *YPTAccount) SafeTransfer(to string, iTokenID int64) error {
 	if err != nil {
 		return err
 	}
-
+	if err := t.SellingPrice(); err != nil {
+		return err
+	}
+	transactOpts.Value = t.Price
 	ts, err := ypt.SafeTransferFrom(transactOpts, t.Account.EthAddress, ether.HexToAddress(to), tokenID)
 	if err != nil {
 		return err

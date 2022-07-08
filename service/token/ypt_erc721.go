@@ -25,19 +25,20 @@ var (
 
 //ERC721_YopuNFTProperty
 type ERC721_YopuNFTProperty struct {
-	Field string `json:"field"`
-	Value string `json:"value"`
+	Field string `json:"Field"`
+	Value string `json:"Value"`
 }
 
 //ERC721_YopuNFT
 type ERC721_YopuNFT struct {
 	Account     ether.Account             `json:"-"`
 	TokenID     *big.Int                  `json:"-"`
-	Name        string                    `json:"name"`
-	Description string                    `json:"description"`
-	Image       string                    `json:"image"`
-	Collection  string                    `json:"collection"`
-	Properties  []*ERC721_YopuNFTProperty `json:"properties"`
+	Name        string                    `json:"Name"`
+	Description string                    `json:"Description"`
+	Image       string                    `json:"Image"`
+	Collection  string                    `json:"Collection"`
+	Properties  []*ERC721_YopuNFTProperty `json:"Properties"`
+	Price       *big.Int                  `json:"-"`
 }
 
 //MetadataURI
@@ -83,6 +84,30 @@ func (t *ERC721_YopuNFT) Get() error {
 		return err
 	}
 
+	return nil
+}
+
+func (t *ERC721_YopuNFT) SellingPrice() error {
+	conn, err := ether.NewEtherClientConn()
+	if err != nil {
+		return err
+	}
+
+	contractAddress := defaultContractAddress
+	if len(config.G.Contract.Address) > 0 {
+		contractAddress = config.G.Contract.Address
+	}
+
+	caller, err := contracts.NewYopuNFTCaller(ether.HexToAddress(contractAddress), conn)
+	if err != nil {
+		return err
+	}
+
+	price, err := caller.TokenIdToPrice(&bind.CallOpts{}, t.TokenID)
+	if err != nil {
+		return err
+	}
+	t.Price = price
 	return nil
 }
 
@@ -135,6 +160,44 @@ func (t *ERC721_YopuNFT) Mint() error {
 	}
 
 	return nil
+}
+
+//SetPrice
+func (t *ERC721_YopuNFT) SetPrice(price int64) error {
+	conn, err := ether.NewEtherClientConn()
+	if err != nil {
+		return err
+	}
+
+	contractAddress := defaultContractAddress
+	if len(config.G.Contract.Address) > 0 {
+		contractAddress = config.G.Contract.Address
+	}
+
+	ypt, err := contracts.NewYopuNFT(ether.HexToAddress(contractAddress), conn)
+	if err != nil {
+		return err
+	}
+
+	chainID, err := conn.NetworkID(context.Background())
+	if err != nil {
+		return err
+	}
+
+	transactOpts, err := bind.NewKeyedTransactorWithChainID(t.Account.ECDSA_PrivateKey, chainID)
+	if err != nil {
+		return err
+	}
+
+	salePrice := big.NewInt(price)
+	transaction, err := ypt.SetPrice(transactOpts, t.TokenID, salePrice, ether.HexToAddress("0"))
+	if err != nil {
+		return err
+	}
+
+	fmt.Println(transaction)
+
+	return err
 }
 
 //NewMetadataURI

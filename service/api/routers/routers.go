@@ -18,7 +18,7 @@ func Load(g *gin.Engine) *gin.Engine {
 
 	v1Api := g.Group("/v1")
 	{
-		v1Api.POST("/account/get", v1.GetAccountByID)
+		v1Api.POST("/account/get", v1.DescribeAccount)
 		v1Api.POST("/account/create", v1.CreateAccount)
 		v1Api.POST("/account/assets", v1.DescribeAccountAssets)
 
@@ -27,6 +27,8 @@ func Load(g *gin.Engine) *gin.Engine {
 		v1Api.POST("/token/list", v1.DescribeTokenList)
 		v1Api.POST("/token/get", v1.DescribeToken)
 		v1Api.POST("/token/buy", v1.TransferToken)
+		v1Api.POST("/token/sale", v1.SetTokenPrice)
+
 	}
 
 	return g

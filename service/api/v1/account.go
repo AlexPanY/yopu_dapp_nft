@@ -41,8 +41,8 @@ func CreateAccount(c *gin.Context) {
 	api.SuccJSONWithData(c, []int{})
 }
 
-//GetAccountByID - Get account info by account_id
-func GetAccountByID(c *gin.Context) {
+//DescribeAccount - Get account info by account_id
+func DescribeAccount(c *gin.Context) {
 	var req request.GetAccountByIDRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
 		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)

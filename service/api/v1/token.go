@@ -31,18 +31,18 @@ func CreateToken(c *gin.Context) {
 	}
 	// api.SuccJSONWithData(c, 1)
 	// return
-	account, err := token.FindAccountByAddress(t.Account.Address)
+	a, err := token.FindAccountByAddress(t.Account.Address)
 	if err != nil {
 		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)
 		return
 	}
 
-	if account.ID <= 0 {
+	if a.ID <= 0 {
 		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, errors.New("account is not exists"))
 		return
 	}
 
-	t.Account.AccountID = uint64(account.ID)
+	t.Account.AccountID = uint64(a.ID)
 
 	if err := t.Mint(); err != nil {
 		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)
@@ -60,7 +60,7 @@ func TransferToken(c *gin.Context) {
 		return
 	}
 
-	a, err := token.FindAccountByAddress(req.From)
+	a, err := token.FindAccountByAddress(req.BuyerAddress)
 	if err != nil {
 		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)
 		return
@@ -70,10 +70,41 @@ func TransferToken(c *gin.Context) {
 		return
 	}
 
-	a.Privatekey = req.Privatekey
+	a.Privatekey = req.BuyerPrivatekey
 
-	if err := a.SafeTransfer(req.To, req.TokenID); err != nil {
+	if err := a.Buy(req.TokenID); err != nil {
 		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)
+		return
+	}
+
+	api.SuccJSONWithData(c, 1)
+}
+
+//SetTokenPrice
+func SetTokenPrice(c *gin.Context) {
+	var req request.SetTokenPriceRequest
+	if err := c.ShouldBindJSON(&req); err != nil {
+		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)
+		return
+	}
+	t := token.ERC721_YopuNFT{
+		TokenID: big.NewInt(req.TokenID),
+		Account: ether.NewAccount(1, req.Address, req.Privatekey),
+	}
+
+	a, err := token.FindAccountByAddress(t.Account.Address)
+	if err != nil {
+		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)
+		return
+	}
+
+	if a.ID <= 0 {
+		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, errors.New("account is not exists"))
+		return
+	}
+
+	if err := t.SetPrice(req.Price); err != nil {
+		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, errors.New("account is not exists"))
 		return
 	}
 

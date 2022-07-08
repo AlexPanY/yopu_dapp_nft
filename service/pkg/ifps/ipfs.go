@@ -10,7 +10,7 @@ import (
 var sh *shell.Shell
 
 var (
-	defaultShellURL = "127.0.0.1:5001"
+	defaultShellURL = "127.0.0.1:5002"
 )
 
 func init() {
