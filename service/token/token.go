@@ -30,6 +30,16 @@ func (t *YopuNFTToken) MetadataURI() string {
 	return ""
 }
 
+//FindAllTokens
+func FindAllTokens() (tokens []*YopuNFTToken) {
+	sql := "SELECT * FROM `yp_account_token`;"
+	mysql.DB[config.DB_YPT].Raw(sql).Scan(&tokens)
+	if len(tokens) <= 0 {
+		tokens = make([]*YopuNFTToken, 0)
+	}
+	return
+}
+
 //FindTokensByAccountID
 func FindTokensByAccountID(accountID int64) (tokens []*YopuNFTToken) {
 	sql := fmt.Sprintf("SELECT * FROM `yp_account_token` WHERE account_id = %d;",

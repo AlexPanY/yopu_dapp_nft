@@ -39,6 +39,12 @@ type ERC721_YopuNFT struct {
 	Collection  string                    `json:"Collection"`
 	Properties  []*ERC721_YopuNFTProperty `json:"Properties"`
 	Price       *big.Int                  `json:"-"`
+	ShowPrice   int64                     `json:"Price"`
+}
+
+//NewMetadataURI
+func (t *ERC721_YopuNFT) NewMetadataURI() (string, error) {
+	return ifps.UpdateMetadataWithJSON(t)
 }
 
 //MetadataURI
@@ -47,6 +53,7 @@ func (t *ERC721_YopuNFT) MetadataURI() (string, error) {
 	if err != nil {
 		return "", err
 	}
+	defer conn.Close()
 
 	contractAddress := defaultContractAddress
 	if len(config.G.Contract.Address) > 0 {
@@ -84,30 +91,11 @@ func (t *ERC721_YopuNFT) Get() error {
 		return err
 	}
 
-	return nil
-}
-
-func (t *ERC721_YopuNFT) SellingPrice() error {
-	conn, err := ether.NewEtherClientConn()
-	if err != nil {
+	//Get Token Price
+	if err := t.SellingPrice(); err != nil {
 		return err
 	}
 
-	contractAddress := defaultContractAddress
-	if len(config.G.Contract.Address) > 0 {
-		contractAddress = config.G.Contract.Address
-	}
-
-	caller, err := contracts.NewYopuNFTCaller(ether.HexToAddress(contractAddress), conn)
-	if err != nil {
-		return err
-	}
-
-	price, err := caller.TokenIdToPrice(&bind.CallOpts{}, t.TokenID)
-	if err != nil {
-		return err
-	}
-	t.Price = price
 	return nil
 }
 
@@ -121,6 +109,7 @@ func (t *ERC721_YopuNFT) Mint() error {
 	if err != nil {
 		return err
 	}
+	defer conn.Close()
 
 	contractAddress := defaultContractAddress
 	if len(config.G.Contract.Address) > 0 {
@@ -156,9 +145,35 @@ func (t *ERC721_YopuNFT) Mint() error {
 	}
 
 	if err := yptToken.Create(); err != nil {
-
+		return err
 	}
 
+	return nil
+}
+
+func (t *ERC721_YopuNFT) SellingPrice() error {
+	conn, err := ether.NewEtherClientConn()
+	if err != nil {
+		return err
+	}
+	defer conn.Close()
+
+	contractAddress := defaultContractAddress
+	if len(config.G.Contract.Address) > 0 {
+		contractAddress = config.G.Contract.Address
+	}
+
+	caller, err := contracts.NewYopuNFTCaller(ether.HexToAddress(contractAddress), conn)
+	if err != nil {
+		return err
+	}
+
+	price, err := caller.TokenIdToPrice(&bind.CallOpts{}, t.TokenID)
+	if err != nil {
+		return err
+	}
+	t.Price = price
+	t.ShowPrice = price.Int64()
 	return nil
 }
 
@@ -198,9 +213,4 @@ func (t *ERC721_YopuNFT) SetPrice(price int64) error {
 	fmt.Println(transaction)
 
 	return err
-}
-
-//NewMetadataURI
-func (t *ERC721_YopuNFT) NewMetadataURI() (string, error) {
-	return ifps.UpdateMetadataWithJSON(t)
 }

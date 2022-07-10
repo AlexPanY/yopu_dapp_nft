@@ -3,6 +3,7 @@ package v1
 import (
 	"errors"
 	"math/big"
+	"strconv"
 
 	"ypt_server/api"
 	"ypt_server/api/v1/request"
@@ -103,7 +104,13 @@ func SetTokenPrice(c *gin.Context) {
 		return
 	}
 
-	if err := t.SetPrice(req.Price); err != nil {
+	price, err := strconv.ParseInt(req.Price, 10, 64)
+	if err != nil {
+		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)
+		return
+	}
+
+	if err := t.SetPrice(price); err != nil {
 		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, errors.New("account is not exists"))
 		return
 	}
@@ -120,7 +127,30 @@ func DescribeToken(c *gin.Context) {
 	}
 
 	t := token.ERC721_YopuNFT{
+		Account: ether.NewAccount(1, req.Address, req.Privatekey),
 		TokenID: big.NewInt(req.TokenID),
+	}
+
+	a, err := token.FindAccountByAddress(t.Account.Address)
+	if err != nil {
+		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)
+		return
+	}
+
+	if a.ID <= 0 {
+		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, errors.New("account is not exists"))
+		return
+	}
+
+	count, err := (&a).BalanceOf()
+	if err != nil {
+		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)
+		return
+	}
+
+	if t.TokenID.Cmp(count) >= 0 {
+		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, errors.New("`TokenID` is not exists"))
+		return
 	}
 
 	if err := t.Get(); err != nil {
@@ -139,7 +169,23 @@ func DescribeTokenList(c *gin.Context) {
 		return
 	}
 
-	// tokens := token.FindTokensByAccountID(req.AccountID)
+	tokens := token.FindAllTokens()
+	if len(tokens) <= 0 {
+		api.SuccJSONWithData(c, tokens)
+		return
+	}
 
-	api.SuccJSONWithData(c, 1)
+	yptTokens := make([]*token.ERC721_YopuNFT, 0, len(tokens))
+	for _, v := range tokens {
+		v := v
+		t := &token.ERC721_YopuNFT{
+			TokenID: big.NewInt(v.ID),
+		}
+		if err := t.Get(); err != nil {
+			continue
+		}
+		yptTokens = append(yptTokens, t)
+	}
+
+	api.SuccJSONWithData(c, yptTokens)
 }

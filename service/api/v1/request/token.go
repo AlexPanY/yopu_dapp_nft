@@ -24,7 +24,9 @@ type TransferTokenRequest struct {
 }
 
 type DescribeTokenRequest struct {
-	TokenID int64 `json:"TokenID"`
+	Address    string `json:"Address"`
+	Privatekey string `json:"PrivateKey"`
+	TokenID    int64  `json:"TokenID"`
 }
 
 //SetTokenPriceRequest
@@ -32,5 +34,5 @@ type SetTokenPriceRequest struct {
 	Address    string `json:"Address"`
 	Privatekey string `json:"PrivateKey"`
 	TokenID    int64  `json:"TokenID"`
-	Price      int64  `json:"Price"`
+	Price      string `json:"Price"`
 }

@@ -8,5 +8,13 @@ type CreateAccountRequest struct {
 
 //GetAccountByIDRequest
 type GetAccountByIDRequest struct {
-	AccountID int64 `json:"account_id"`
+	Address    string `json:"Address"`
+	Privatekey string `json:"PrivateKey"`
+	AccountID  int64  `json:"account_id"`
+}
+
+//DescribeAccountAssetsRequest
+type DescribeAccountAssetsRequest struct {
+	Address    string `json:"Address"`
+	Privatekey string `json:"PrivateKey"`
 }

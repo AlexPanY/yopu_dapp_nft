@@ -126,11 +126,12 @@ func (a *YPTAccount) SafeTransfer(to string, iTokenID int64) error {
 }
 
 //BalanceOf
-func (a *YPTAccount) BalanceOf() error {
+func (a *YPTAccount) BalanceOf() (*big.Int, error) {
 	conn, err := ether.NewEtherClientConn()
 	if err != nil {
-		return err
+		return nil, err
 	}
+	defer conn.Close()
 
 	contractAddress := defaultContractAddress
 	if len(config.G.Contract.Address) > 0 {
@@ -139,35 +140,45 @@ func (a *YPTAccount) BalanceOf() error {
 
 	caller, err := contracts.NewYopuNFTCaller(ether.HexToAddress(contractAddress), conn)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	callopts := &bind.CallOpts{}
 
 	count, err := caller.BalanceOf(callopts, ether.HexToAddress(a.Address))
 	if err != nil {
-		return err
+		return nil, err
+	}
+	return count, err
+
+}
+
+//Tokens All tokens under the account
+func (a *YPTAccount) Tokens() ([]*ERC721_YopuNFT, error) {
+	count, err := a.BalanceOf()
+	if err != nil {
+		return nil, err
 	}
 
-	var i int64 = 1
+	var i int64 = 0
+	erc721Tokens := make([]*ERC721_YopuNFT, 0, 2)
 	for {
 		tokenID := big.NewInt(i)
-
-		if count.Cmp(tokenID) < 0 {
+		if tokenID.Cmp(count) >= 0 {
 			break
 		}
 
-		tokenURI, err := caller.TokenURI(callopts, tokenID)
-		if err != nil {
-			break
+		t := &ERC721_YopuNFT{
+			TokenID: tokenID,
 		}
-		fmt.Println(fmt.Sprintf("------TokenID: %v, URI: %v-----", tokenID, tokenURI))
-
+		if err := t.Get(); err != nil {
+			continue
+		}
+		erc721Tokens = append(erc721Tokens, t)
 		i++
 	}
 
-	fmt.Println(fmt.Sprintf("------BalanceOf: %v-----", count))
-	return nil
+	return erc721Tokens, nil
 }
 
 //Create

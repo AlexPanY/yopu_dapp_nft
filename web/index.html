@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+  
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +12,7 @@
     <!-- Title -->
     <title>Circl - Responsive Admin Dashboard Template</title>
     <!-- Styles -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,800&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,800&display=swap" rel="stylesheet"> -->
     <link rel="stylesheet" href="./assets/css/bootstrap5.min.css">
     <link rel="stylesheet" href="./assets/css/all.min.css">
     <link rel="stylesheet" href="./assets/css/perfect-scrollbar.css">
@@ -30,53 +31,133 @@
   
   <body class="no-loader sidebar-hidden">
     <div class='loader'>
-      <div class='spinner-grow text-primary' role='status'>
-        <span class='sr-only'>Loading...</span>
-      </div>
+  <div class='spinner-grow text-primary' role='status'>
+    <span class='sr-only'>Loading...</span>
+  </div>
+</div>
+<div class="page-container">
+    <div class="page-header">
+      <nav class="navbar navbar-expand-lg d-flex justify-content-between">
+        <div class="" id="navbarNav">
+          <ul class="navbar-nav" id="leftNav">
+            <li class="nav-item">
+              <a class="nav-link" id="sidebar-toggle" href="#">
+                <i data-feather="arrow-left">
+                </i>
+              </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="./index.html">Tokens</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./create.html">Create</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </div>
-    <div class="page-container">
-      <div class="page-header">
-        <nav class="navbar navbar-expand-lg d-flex justify-content-between">
-          <div class="" id="navbarNav">
-            <ul class="navbar-nav" id="leftNav">
-              <li class="nav-item">
-                <a class="nav-link" id="sidebar-toggle" href="#">
-                  <i data-feather="arrow-left">
-                  </i>
-                </a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="./index.html">Market</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./mine.html">Mine</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./create.html">Create</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-      <div class="page-content">
-        <div class="main-wrapper">
-          <div class="row">
-            <div class="col-md-2">
-              <div class="card">
-                <img src="./assets/images/play/play-1.jpg" class="card-img-top" alt="..." height="200px;">
-                <div class="card-body">
-                  <p font-weight="600">
-                    <a href="#">Epic Gorilla #5209</a>
-                  </p>
-                  <div class="card-text">
-                    <img src="./assets/images/6f8e2979d428180222796ff4a33ab929.svg" size="12" height="22px"> 1 ETH
+    <div class="page-content">
+      <div class="main-wrapper">
+        <div class="row">
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <!-- <form class="row needs-validation" id="item-form" novalidate=""> -->
+                  <div class="row">
+                    <div class="mb-3 col-md-5">
+                      <label for="q-account-address" class="form-label">Address</label>
+                      <input type="text" class="form-control" id="q-account-address">
+                      <div id="emailHelp" class="form-text">Current account wallet address.</div>
+                    </div>
+                    <div class="mb-3 col-md-5">
+                      <label for="q-account-privatekey" class="form-label">PrivateKey</label>
+                      <input type="text" class="form-control" id="q-account-privatekey">
+                    </div>
+                    <div class="mb-3 col-md-2">
+                      <label for="q-account-privatekey" class="form-label">&nbsp;</label>
+                      <button type="submit" class="btn btn-primary form-control btn-query">Query</button>
+                    </div>
                   </div>
-                </div>
-                <div class="card-footer text-muted">
-                  <a href="#" class="btn btn-primary">Buy</a>
-                </div>
+                <!-- </form> -->
               </div>
             </div>
+          </div>
+        </div>
+        <div class="row">
+        </div>
+        <div class="row nft-tokens-list">
+        </div>
+      </div>
+    </div>
+    </div>
+    
+    <div class="modal fade" id="set-token-modal" role="dialog" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="card-body">
+              <h5 class="card-title">Set Price</h5>
+              <p class="card-description alert alert-danger">
+                Once the price is set, the token is about to go on sale.
+              </p>
+              <form class="row g-3 needs-validation" id="item-form" novalidate="">
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">ETH</span>
+                  <input type="hidden" id="nft-token-id" value="">
+                  <input type="number" min="1" class="form-control nft-sale-price" value="" required="required">
+                  <div class="valid-feedback"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary btn-save-price">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="buy-token-modal" role="dialog" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Buy Token</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="card-body">
+              <form class="row g-3 needs-validation" id="item-form" novalidate="">
+                <div class="input-group mb-3">
+                  <input type="hidden" id="nft-token-id" value="">
+                  <form class="row g-3 needs-validation" id="item-form" novalidate="">
+                    <div class="row mb-3">
+                      <div class="col-md-12">
+                        <label for="account_address" class="form-label">Buyer Address</label>
+                        <input type="text" class="form-control" id="account_address" value="" required="required">
+                        <div class="valid-feedback"></div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <label for="account_privatekey" class="form-label">Buyer PrivateKey</label>
+                        <input type="text" class="form-control" id="account_privatekey" value="" required="required">
+                        <div class="valid-feedback"></div>
+                      </div>
+                    </div>
+                  </form>
+                  <div class="valid-feedback"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary btn-buy">Save</button>
           </div>
         </div>
       </div>
@@ -88,7 +169,8 @@
     <script src="./assets/js/feather.min.js"></script> 
     <script src="./assets/js/app.js"></script>
     <script tpye="text/javascript">
-      YptNFT.List();
+      YptNFT.SetTokenPrice();
     </script>
   </body>
+
 </html>

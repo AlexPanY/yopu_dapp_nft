@@ -61,32 +61,32 @@ func DescribeAccount(c *gin.Context) {
 	}
 
 	api.SuccJSONWithData(c, account)
-	return
 }
 
 //DescribeAccountAssets Get account assets
 func DescribeAccountAssets(c *gin.Context) {
-	var req request.GetAccountByIDRequest
+	var req request.DescribeAccountAssetsRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
 		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)
 		return
 	}
-	if req.AccountID <= 0 {
-		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, errors.New("`account_id` must be required."))
-		return
-	}
 
-	a, err := token.FindAccountByID(req.AccountID)
+	a, err := token.FindAccountByAddress(req.Address)
 	if err != nil {
 		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)
 		return
 	}
 
-	if err := (&a).BalanceOf(); err != nil {
+	if a.ID <= 0 {
+		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, errors.New("account is not exists"))
+		return
+	}
+
+	tokens, err := (&a).Tokens()
+	if err != nil {
 		api.ErrJSONWithRawErr(c, errno.ErrParamInvalid, err)
 		return
 	}
 
-	api.SuccJSONWithData(c, a)
-	return
+	api.SuccJSONWithData(c, tokens)
 }
